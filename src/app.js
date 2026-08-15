@@ -2353,6 +2353,24 @@ function initAllFeatures() {
 
       currentRegisteredGuest = guestRecord;
 
+      // Cross-device sync RSVP to server
+      try {
+        const apiBase = (cmsStorage && typeof cmsStorage.getApiBaseUrl === 'function') ? cmsStorage.getApiBaseUrl() : '';
+        fetch(`${apiBase}/api/events/${encodeURIComponent(currentEventSlug)}/guests`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(guestRecord)
+        }).catch(() => {});
+      } catch (eFetch) {}
+
+      // Real-time broadcast RSVP to Admin Studio
+      try {
+        if (typeof BroadcastChannel !== 'undefined') {
+          const bc = new BroadcastChannel('cms_live_sync');
+          bc.postMessage({ type: 'guest_rsvp', slug: currentEventSlug, guest: guestRecord });
+        }
+      } catch (eBc) {}
+
       // Hydrate Ticket Modal completely with this specific event's data
       const ticketMonogram = document.getElementById('ticket-monogram');
       const ticketEventTitle = document.getElementById('ticket-event-title');
