@@ -705,8 +705,17 @@ function hydrateEventContent() {
   }
 
   const guestParam = urlParams.get('guest');
-  const guestName = guestParam || currentConfig.vipPassGuestSample || 'Valued Guest & Plus One';
-  document.querySelectorAll('#preview-guest-name, .card-guest-name, .env-guest').forEach(el => el.textContent = guestName);
+  const guestName = guestParam || currentConfig.vipPassGuestName || currentConfig.vipPassGuestSample || (currentEventSlug === 'master_default' ? 'Valued Guest & Plus One' : 'Дорогой Гость');
+  document.querySelectorAll('#preview-guest-name, .card-guest-name, .env-guest, #ticket-guest-name').forEach(el => el.textContent = guestName);
+
+  const liveGuestInp = document.getElementById('live-guest-input');
+  if (liveGuestInp) {
+    if (currentConfig.vipPassGuestPlaceholder) {
+      liveGuestInp.placeholder = currentConfig.vipPassGuestPlaceholder;
+    } else if (currentEventSlug !== 'master_default') {
+      liveGuestInp.placeholder = 'например, Анна Смирнова / Дорогой Гость';
+    }
+  }
 
   const emailParam = urlParams.get('email');
   if (emailParam) {
@@ -1929,10 +1938,14 @@ function initAllFeatures() {
     container.addEventListener('touchend', resetCardTilt, { passive: true });
     container.addEventListener('touchcancel', resetCardTilt, { passive: true });
 
-    if (liveGuestInput && previewGuestName) {
+    if (liveGuestInput) {
       liveGuestInput.addEventListener('input', (e) => {
         const val = e.target.value.trim();
-        previewGuestName.textContent = val ? val : 'Valued Guest & Plus One';
+        const defaultName = (window.currentEventConfig && (window.currentEventConfig.vipPassGuestName || window.currentEventConfig.vipPassGuestSample)) || (currentEventSlug === 'master_default' ? 'Valued Guest & Plus One' : 'Дорогой Гость');
+        const displayName = val || defaultName;
+        document.querySelectorAll('#preview-guest-name, .card-guest-name, .env-guest, #ticket-guest-name').forEach(el => {
+          el.textContent = displayName;
+        });
       });
     }
   }
