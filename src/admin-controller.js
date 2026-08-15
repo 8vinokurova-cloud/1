@@ -601,6 +601,7 @@ function hydrateCurrentEvent() {
 
   // 1. Hero
   setVal('cms-hero-badge-tag', activeConfig.heroBadgeSparkle || 'EXCLUSIVE 25TH MILESTONE CELEBRATION');
+  setVal('cms-hero-chapter-prefix', activeConfig.heroChapterPrefix !== undefined ? activeConfig.heroChapterPrefix : 'CHAPTER');
   setVal('cms-milestone-title', activeConfig.milestoneTitle || 'CHAPTER TWENTY-FIVE');
   setVal('cms-milestone-subtitle', activeConfig.milestoneSubtitle || 'A Quarter Century in Haute Couture');
   setVal('cms-protagonist-name', activeConfig.protagonistName || (activeEventSlug === 'master_default' ? 'Aurelia Vance' : 'Victoria Sterling'));
@@ -772,10 +773,10 @@ function hydrateCurrentEvent() {
   }
   renderAdminCocktailOptionsBuilder();
 
-  setVal('cms-rsvp-lbl-name', activeConfig.rsvpNameLabel || 'First Name *');
-  setVal('cms-rsvp-name-ph', activeConfig.rsvpNamePlaceholder || 'e.g. Genevieve');
-  setVal('cms-rsvp-lbl-lastname', activeConfig.rsvpLastNameLabel || 'Last Name *');
-  setVal('cms-rsvp-lastname-ph', activeConfig.rsvpLastNamePlaceholder || 'e.g. Sterling');
+  setVal('cms-rsvp-lbl-name', activeConfig.rsvpNameLabel || 'Your Full Name *');
+  setVal('cms-rsvp-name-ph', activeConfig.rsvpNamePlaceholder || 'e.g. Lady Genevieve Sterling');
+  setVal('cms-rsvp-lbl-email', activeConfig.rsvpEmailLabel || 'Email for VIP Confirmation *');
+  setVal('cms-rsvp-email-ph', activeConfig.rsvpEmailPlaceholder || 'genevieve@luxury.com');
   setVal('cms-rsvp-lbl-attending', activeConfig.rsvpAttendingLabel || 'Will You Grace Us With Your Presence? *');
   setVal('cms-rsvp-btn-attending-lbl', activeConfig.rsvpAttendYesLabel || 'Delighted to Attend');
   setVal('cms-rsvp-btn-attending-sub', activeConfig.rsvpAttendYesSub || 'I will be there in high glamour');
@@ -2165,6 +2166,7 @@ function collectAdminConfig(config) {
 
   // 1. Hero & Core Celebration Identity
   if (hasEl('cms-hero-badge-tag')) config.heroBadgeSparkle = getVal('cms-hero-badge-tag');
+  if (hasEl('cms-hero-chapter-prefix')) config.heroChapterPrefix = getVal('cms-hero-chapter-prefix');
 
   if (hasEl('cms-milestone-title')) {
     const mTitle = getVal('cms-milestone-title');
@@ -2389,8 +2391,8 @@ function collectAdminConfig(config) {
 
   if (hasEl('cms-rsvp-lbl-name')) config.rsvpNameLabel = getVal('cms-rsvp-lbl-name');
   if (hasEl('cms-rsvp-name-ph')) config.rsvpNamePlaceholder = getVal('cms-rsvp-name-ph');
-  if (hasEl('cms-rsvp-lbl-lastname')) config.rsvpLastNameLabel = getVal('cms-rsvp-lbl-lastname');
-  if (hasEl('cms-rsvp-lastname-ph')) config.rsvpLastNamePlaceholder = getVal('cms-rsvp-lastname-ph');
+  if (hasEl('cms-rsvp-lbl-email')) config.rsvpEmailLabel = getVal('cms-rsvp-lbl-email');
+  if (hasEl('cms-rsvp-email-ph')) config.rsvpEmailPlaceholder = getVal('cms-rsvp-email-ph');
   if (hasEl('cms-rsvp-lbl-attending')) config.rsvpAttendingLabel = getVal('cms-rsvp-lbl-attending');
   if (hasEl('cms-rsvp-btn-attending-lbl')) config.rsvpAttendYesLabel = getVal('cms-rsvp-btn-attending-lbl');
   if (hasEl('cms-rsvp-btn-attending-sub')) config.rsvpAttendYesSub = getVal('cms-rsvp-btn-attending-sub');
