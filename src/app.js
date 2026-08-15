@@ -179,8 +179,18 @@ function hydrateEventContent() {
   }
 
   // 4b. Headline & Slogan
+  const edLine1 = document.getElementById('hero-editorial-line-1') || document.querySelector('.editorial-line-1');
+  if (edLine1) {
+    if (currentConfig.heroChapterPrefix !== undefined) {
+      edLine1.textContent = currentConfig.heroChapterPrefix;
+      edLine1.style.display = currentConfig.heroChapterPrefix ? '' : 'none';
+    } else {
+      edLine1.textContent = 'CHAPTER';
+      edLine1.style.display = '';
+    }
+  }
   if (currentConfig.milestoneTitle) {
-    document.querySelectorAll('.editorial-line-2').forEach(el => el.textContent = currentConfig.milestoneTitle.replace('CHAPTER ', ''));
+    document.querySelectorAll('.editorial-line-2').forEach(el => el.textContent = currentConfig.milestoneTitle.replace(/^CHAPTER\s+/i, ''));
     document.querySelectorAll('.letter-title, .footer-title').forEach(el => el.textContent = currentConfig.milestoneTitle);
   }
   if (currentConfig.milestoneSubtitle) {
@@ -2058,47 +2068,21 @@ function initAllFeatures() {
     return true;
   }
 
-  // Live RSVP Email validation input feedback
-  const rsvpEmailInput = document.getElementById('rsvp-email');
-  const rsvpEmailFeedback = document.getElementById('rsvp-email-feedback');
-  if (rsvpEmailInput) {
-    const validateEmailField = () => {
-      const val = rsvpEmailInput.value.trim();
-      if (!val) {
-        rsvpEmailInput.style.borderColor = '';
-        rsvpEmailInput.style.boxShadow = '';
-        if (rsvpEmailFeedback) {
-          rsvpEmailFeedback.style.display = 'none';
-          rsvpEmailFeedback.textContent = '';
-        }
-        return false;
-      }
-      
-      const isValid = isRealValidEmail(val);
-      if (isValid) {
-        rsvpEmailInput.style.borderColor = '#55EFC4';
-        rsvpEmailInput.style.boxShadow = '0 0 10px rgba(85, 239, 196, 0.35)';
-        if (rsvpEmailFeedback) {
-          rsvpEmailFeedback.style.display = 'block';
-          rsvpEmailFeedback.style.color = '#55EFC4';
-          rsvpEmailFeedback.innerHTML = '<i class="fa-solid fa-circle-check"></i> Valid email address for VIP Confirmation';
-        }
-        return true;
-      } else {
-        rsvpEmailInput.style.borderColor = '#FF7675';
-        rsvpEmailInput.style.boxShadow = '0 0 10px rgba(255, 118, 117, 0.35)';
-        if (rsvpEmailFeedback) {
-          rsvpEmailFeedback.style.display = 'block';
-          rsvpEmailFeedback.style.color = '#FF7675';
-          rsvpEmailFeedback.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Please enter a real email with a valid domain (e.g. name@example.com)';
-        }
-        return false;
-      }
-    };
-
-    rsvpEmailInput.addEventListener('input', validateEmailField);
-    rsvpEmailInput.addEventListener('blur', validateEmailField);
-  }
+  // Real-time guest name & surname sync
+  const rsvpNameInput = document.getElementById('rsvp-name');
+  const rsvpSurnameInput = document.getElementById('rsvp-surname');
+  const updateRsvpGuestPreview = () => {
+    const fn = (rsvpNameInput?.value || '').trim();
+    const ln = (rsvpSurnameInput?.value || '').trim();
+    const full = `${fn} ${ln}`.trim();
+    if (full) {
+      document.querySelectorAll('#preview-guest-name, .card-guest-name, .env-guest, #ticket-guest-name').forEach(el => {
+        el.textContent = full;
+      });
+    }
+  };
+  rsvpNameInput?.addEventListener('input', updateRsvpGuestPreview);
+  rsvpSurnameInput?.addEventListener('input', updateRsvpGuestPreview);
 
   // Google Maps button click handler
   document.querySelectorAll('#open-gmaps-btn, .btn-location').forEach(btn => {
@@ -2312,30 +2296,12 @@ function initAllFeatures() {
     }
   }
 
-  // RSVP Email Autocompletion / Recognition
-  if (rsvpEmailInput) {
-    rsvpEmailInput.addEventListener('change', (e) => {
-      const emailVal = e.target.value.trim().toLowerCase();
-      if (!emailVal || !cmsStorage) return;
-      const existingGuests = cmsStorage.getGuests(currentEventSlug);
-      const matched = existingGuests.find(g => (g.email || '').toLowerCase() === emailVal);
-      if (matched) {
-        currentRegisteredGuest = matched;
-        const nameInput = document.getElementById('rsvp-name');
-        const songInput = document.getElementById('rsvp-song');
-        const msgInput = document.getElementById('rsvp-message');
-        if (nameInput && !nameInput.value) nameInput.value = matched.name || '';
-        if (songInput && !songInput.value) songInput.value = matched.song || '';
-        if (msgInput && !msgInput.value) msgInput.value = matched.message || '';
-      }
-    });
-  }
-
   if (rsvpForm) {
     rsvpForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const name = (document.getElementById('rsvp-name')?.value || '').trim() || 'Distinguished Guest';
-      const email = (document.getElementById('rsvp-email')?.value || '').trim() || 'guest@domain.com';
+      const firstName = (document.getElementById('rsvp-name')?.value || '').trim();
+      const lastName = (document.getElementById('rsvp-surname')?.value || '').trim();
+      const fullName = (firstName && lastName) ? `${firstName} ${lastName}` : (firstName || lastName || 'Distinguished Guest');
       const attendanceEl = document.querySelector('input[name="attendance"]:checked');
       const attendance = attendanceEl ? attendanceEl.value : 'attending';
       const plusOneCount = plusOneSelect ? plusOneSelect.value : '0';
@@ -2349,8 +2315,10 @@ function initAllFeatures() {
       const generatedPassId = `${monoPrefix}-${Math.floor(1000 + Math.random() * 9000)}-VIP`;
 
       const guestRecord = {
-        name,
-        email,
+        name: fullName,
+        firstName,
+        lastName,
+        email: `${firstName.toLowerCase().replace(/[^a-z0-9]/g, '') || 'guest'}@celebration.vip`,
         attendance,
         plusOne: plusOneCount !== '0' ? `Yes (${plusOneName || 'Companion'})` : 'No',
         plusOneCount,
