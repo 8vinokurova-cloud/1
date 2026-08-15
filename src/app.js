@@ -61,7 +61,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') syncLatestOnFocus();
   });
+  window.addEventListener('pageshow', syncLatestOnFocus);
   window.addEventListener('focus', syncLatestOnFocus);
+
+  // Periodic lightweight live cloud poller for mobile browser sandboxes
+  setInterval(() => {
+    if (document.visibilityState === 'visible') {
+      syncLatestOnFocus();
+    }
+  }, 4000);
 });
 
 /* ==========================================================================
