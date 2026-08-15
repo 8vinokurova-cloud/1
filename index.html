@@ -195,9 +195,9 @@
 
           <h1 class="hero-title animate-fade-up delay-1">
             <span class="hero-celebrant-name gold-gradient-text" id="hero-celebrant-name">AURELIA VANCE</span>
-            <span class="editorial-line-1">CHAPTER</span>
-            <span class="editorial-line-2 gold-gradient-text">TWENTY-FIVE</span>
-            <span class="editorial-signature">A Quarter Century in Haute Couture</span>
+            <span class="editorial-line-1" id="hero-editorial-line-1">CHAPTER</span>
+            <span class="editorial-line-2 gold-gradient-text" id="hero-editorial-line-2">TWENTY-FIVE</span>
+            <span class="editorial-signature" id="hero-editorial-signature">A Quarter Century in Haute Couture</span>
           </h1>
 
           <p class="hero-description animate-fade-up delay-2">
@@ -697,23 +697,22 @@
         <form id="rsvp-form" class="rsvp-luxury-form">
           <div class="form-grid">
             
-            <!-- Full Name -->
+            <!-- Full / First Name -->
             <div class="form-group">
-              <label for="rsvp-name" id="rsvp-lbl-name">Your Full Name <span class="req">*</span></label>
+              <label for="rsvp-name" id="rsvp-lbl-name">Your First Name <span class="req">*</span></label>
               <div class="input-container">
                 <i class="fa-solid fa-user-tie input-icon"></i>
-                <input type="text" id="rsvp-name" required placeholder="e.g. Lady Genevieve Sterling">
+                <input type="text" id="rsvp-name" required placeholder="e.g. Lady Genevieve">
               </div>
             </div>
 
-            <!-- Email Address with Real-Time Validation Feedback -->
+            <!-- Surname / Last Name -->
             <div class="form-group">
-              <label for="rsvp-email" id="rsvp-lbl-email">Email for VIP Confirmation <span class="req">*</span></label>
-              <div class="input-container" id="rsvp-email-container">
-                <i class="fa-solid fa-envelope input-icon"></i>
-                <input type="email" id="rsvp-email" required placeholder="genevieve@luxury.com" autocomplete="email">
+              <label for="rsvp-surname" id="rsvp-lbl-email">Surname <span class="req">*</span></label>
+              <div class="input-container" id="rsvp-surname-container">
+                <i class="fa-solid fa-signature input-icon"></i>
+                <input type="text" id="rsvp-surname" required placeholder="e.g. Sterling">
               </div>
-              <span id="rsvp-email-feedback" class="email-validation-hint" style="display: none; font-size: 0.72rem; margin-top: 5px; font-weight: 500;"></span>
             </div>
 
             <!-- Attendance Choice -->
