@@ -496,8 +496,12 @@ function loadAdminPortal() {
       const allSlugs = cmsStorage.getAllEventSlugs();
       const uniqueSlugs = Array.from(new Set(['master_default', ...allSlugs]));
       
-      if (!activeEventSlug || !uniqueSlugs.includes(activeEventSlug)) {
-        activeEventSlug = adminUrlParams.get('event') || localStorage.getItem('cms_last_active_slug') || 'master_default';
+      const urlRequestedSlug = adminUrlParams.get('event');
+      if (urlRequestedSlug && urlRequestedSlug !== 'default') {
+        activeEventSlug = urlRequestedSlug;
+        localStorage.setItem('cms_last_active_slug', urlRequestedSlug);
+      } else if (!activeEventSlug || !uniqueSlugs.includes(activeEventSlug)) {
+        activeEventSlug = localStorage.getItem('cms_last_active_slug') || 'master_default';
       }
 
       uniqueSlugs.forEach(slug => {
