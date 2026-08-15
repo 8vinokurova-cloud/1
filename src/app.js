@@ -487,9 +487,9 @@ function hydrateEventContent() {
     const el = document.getElementById('rsvp-lbl-name');
     if (el) el.innerHTML = `${escapeHtml(currentConfig.rsvpNameLabel)} <span class="req">*</span>`;
   }
-  if (currentConfig.rsvpEmailLabel) {
-    const el = document.getElementById('rsvp-lbl-email');
-    if (el) el.innerHTML = `${escapeHtml(currentConfig.rsvpEmailLabel)} <span class="req">*</span>`;
+  if (currentConfig.rsvpLastNameLabel || currentConfig.rsvpEmailLabel) {
+    const el = document.getElementById('rsvp-lbl-lastname') || document.getElementById('rsvp-lbl-email');
+    if (el) el.innerHTML = `${escapeHtml(currentConfig.rsvpLastNameLabel || currentConfig.rsvpEmailLabel)} <span class="req">*</span>`;
   }
   if (currentConfig.rsvpAttendingLabel) {
     const el = document.getElementById('rsvp-lbl-attending');
@@ -601,9 +601,9 @@ function hydrateEventContent() {
   if (rsvpNameInp && currentConfig.rsvpNamePlaceholder) {
     rsvpNameInp.placeholder = currentConfig.rsvpNamePlaceholder;
   }
-  const rsvpEmailInp = document.getElementById('rsvp-email');
-  if (rsvpEmailInp && currentConfig.rsvpEmailPlaceholder) {
-    rsvpEmailInp.placeholder = currentConfig.rsvpEmailPlaceholder;
+  const rsvpLastNameInp = document.getElementById('rsvp-lastname') || document.getElementById('rsvp-email');
+  if (rsvpLastNameInp && (currentConfig.rsvpLastNamePlaceholder || currentConfig.rsvpEmailPlaceholder)) {
+    rsvpLastNameInp.placeholder = currentConfig.rsvpLastNamePlaceholder || currentConfig.rsvpEmailPlaceholder;
   }
   const rsvpPlusNameInp = document.getElementById('rsvp-plusone-name');
   if (rsvpPlusNameInp && currentConfig.rsvpPlusOneNamePlaceholder) {
@@ -2296,46 +2296,50 @@ function initAllFeatures() {
     ctx.font = '12px sans-serif';
     ctx.fillText('✦ EXCLUSIVE VIP DIGITAL INVITATION ✦', 600, 655);
 
-    // Trigger Image Download
+    // Trigger Native Photo Gallery Save / Direct Download
     try {
-      const imageUri = canvas.toDataURL('image/png');
-      const dlLink = document.createElement('a');
-      const safeName = (guest.name || 'VIP_Guest').replace(/[^a-zA-Z0-9_-]/g, '_');
-      dlLink.download = `VIP_Invitation_${safeName}.png`;
-      dlLink.href = imageUri;
-      document.body.appendChild(dlLink);
-      dlLink.click();
-      document.body.removeChild(dlLink);
+      canvas.toBlob(async (blob) => {
+        if (!blob) return;
+        const safeName = (guest.name || 'VIP_Guest').replace(/[^a-zA-Z0-9_-]/g, '_');
+        const filename = `VIP_Invitation_${safeName}.png`;
+        const file = new File([blob], filename, { type: 'image/png' });
+
+        // iOS & Android native share sheet targeting Photo Gallery
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({
+              files: [file],
+              title: 'VIP Pass Photo',
+              text: 'Exclusive VIP Invitation Card'
+            });
+            return;
+          } catch (shareErr) {
+            if (shareErr.name === 'AbortError') return;
+          }
+        }
+
+        // Desktop / standard browser direct download fallback
+        const imageUri = canvas.toDataURL('image/png');
+        const dlLink = document.createElement('a');
+        dlLink.download = filename;
+        dlLink.href = imageUri;
+        document.body.appendChild(dlLink);
+        dlLink.click();
+        document.body.removeChild(dlLink);
+      }, 'image/png');
     } catch (err) {
       console.error('Error generating pass image:', err);
       window.print();
     }
   }
 
-  // RSVP Email Autocompletion / Recognition
-  if (rsvpEmailInput) {
-    rsvpEmailInput.addEventListener('change', (e) => {
-      const emailVal = e.target.value.trim().toLowerCase();
-      if (!emailVal || !cmsStorage) return;
-      const existingGuests = cmsStorage.getGuests(currentEventSlug);
-      const matched = existingGuests.find(g => (g.email || '').toLowerCase() === emailVal);
-      if (matched) {
-        currentRegisteredGuest = matched;
-        const nameInput = document.getElementById('rsvp-name');
-        const songInput = document.getElementById('rsvp-song');
-        const msgInput = document.getElementById('rsvp-message');
-        if (nameInput && !nameInput.value) nameInput.value = matched.name || '';
-        if (songInput && !songInput.value) songInput.value = matched.song || '';
-        if (msgInput && !msgInput.value) msgInput.value = matched.message || '';
-      }
-    });
-  }
-
   if (rsvpForm) {
     rsvpForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const name = (document.getElementById('rsvp-name')?.value || '').trim() || 'Distinguished Guest';
-      const email = (document.getElementById('rsvp-email')?.value || '').trim() || 'guest@domain.com';
+      const firstName = (document.getElementById('rsvp-name')?.value || '').trim();
+      const lastName = (document.getElementById('rsvp-lastname')?.value || '').trim();
+      const name = (firstName && lastName) ? `${firstName} ${lastName}` : (firstName || lastName || 'Distinguished Guest');
+      
       const attendanceEl = document.querySelector('input[name="attendance"]:checked');
       const attendance = attendanceEl ? attendanceEl.value : 'attending';
       const plusOneCount = plusOneSelect ? plusOneSelect.value : '0';
@@ -2350,7 +2354,8 @@ function initAllFeatures() {
 
       const guestRecord = {
         name,
-        email,
+        firstName,
+        lastName,
         attendance,
         plusOne: plusOneCount !== '0' ? `Yes (${plusOneName || 'Companion'})` : 'No',
         plusOneCount,
@@ -2423,24 +2428,12 @@ function initAllFeatures() {
 
       if (guestRecord.message) addToastToWall(guestRecord.name, guestRecord.message);
 
-      // Dispatch Luxury VIP Email Confirmation to cloud backend
-      if (email && email.includes('@')) {
-        fetch(`${apiBase}/api/dispatch-invite`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: guestRecord.name,
-            email: guestRecord.email,
-            eventSlug: currentEventSlug,
-            eventTitle: currentConfig?.milestoneTitle || currentConfig?.eventName || 'THE GOLDEN SOIRÉE',
-            eventDate: currentConfig?.eventDateText || currentConfig?.vipPassDate,
-            venueName: venueDisplay,
-            plusOne: guestRecord.plusOneCount === '1'
-          })
-        }).then(r => r.json()).then(data => {
-          console.log('✉️ Email invite dispatch response:', data);
-        }).catch(err => console.warn('Email dispatch background:', err));
-      }
+      luxuryAudio.playChampagneClink();
+      spawnBurstParticles(window.innerWidth / 2, window.innerHeight / 2);
+
+      if (ticketModal) ticketModal.classList.add('active');
+    });
+  }
 
       luxuryAudio.playChampagneClink();
       spawnBurstParticles(window.innerWidth / 2, window.innerHeight / 2);
