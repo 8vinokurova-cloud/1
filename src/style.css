@@ -1811,16 +1811,17 @@ body.loading-state {
 }
 
 .card-tier-badge {
-  background: rgba(212, 175, 55, 0.15);
-  border: 1px solid var(--gold-primary);
-  color: var(--gold-bright);
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  display: flex;
+  background: rgba(212, 175, 55, 0.06);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: rgba(255, 223, 115, 0.75);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.58rem;
+  letter-spacing: 1px;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  font-weight: 500;
 }
 
 .card-center-details {
@@ -1863,8 +1864,8 @@ body.loading-state {
 
 .card-bottom-row {
   display: grid;
-  grid-template-columns: 0.9fr 0.9fr 1.5fr auto;
-  gap: 12px;
+  grid-template-columns: auto auto 1.4fr auto;
+  gap: 14px;
   align-items: flex-end;
   z-index: 2;
   border-top: 1px solid rgba(212, 175, 55, 0.25);
@@ -1877,6 +1878,11 @@ body.loading-state {
   display: flex;
   flex-direction: column;
   min-width: 0;
+}
+
+.card-meta-col:nth-child(1) .c-meta-val,
+.card-meta-col:nth-child(2) .c-meta-val {
+  white-space: nowrap !important;
 }
 
 .c-meta-lbl {
@@ -3722,10 +3728,13 @@ body.loading-state {
     letter-spacing: 1.5px !important;
   }
   .card-tier-badge {
-    font-size: 0.76rem !important;
-    font-weight: 700 !important;
-    padding: 6px 14px !important;
-    border-radius: 15px !important;
+    font-size: 0.58rem !important;
+    font-weight: 500 !important;
+    padding: 3px 8px !important;
+    border-radius: 12px !important;
+    background: rgba(212, 175, 55, 0.06) !important;
+    border: 1px solid rgba(212, 175, 55, 0.25) !important;
+    color: rgba(255, 223, 115, 0.75) !important;
   }
   .card-presents {
     font-size: 0.74rem !important;
