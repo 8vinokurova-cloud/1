@@ -561,16 +561,18 @@ body.loading-state {
 }
 
 .env-vip-card-layout .card-tier-badge {
-  background: rgba(212, 175, 55, 0.18);
-  border: 1px solid #D4AF37;
-  color: #FFDF73;
-  padding: 3px 10px;
-  border-radius: 14px;
-  font-size: 0.62rem;
-  letter-spacing: 1.5px;
-  display: flex;
+  background: rgba(212, 175, 55, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  color: rgba(255, 223, 115, 0.72);
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-size: 0.52rem;
+  letter-spacing: 0.8px;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
+  font-weight: 500;
+  box-shadow: none;
 }
 
 .env-vip-card-layout .card-center-details {
@@ -3727,14 +3729,20 @@ body.loading-state {
     font-weight: 700 !important;
     letter-spacing: 1.5px !important;
   }
-  .card-tier-badge {
-    font-size: 0.58rem !important;
+  .card-tier-badge,
+  .env-tier,
+  .env-vip-card-layout .card-tier-badge,
+  .printable-vip-card .card-tier-badge,
+  .ticket-modal-card .card-tier-badge {
+    font-size: 0.52rem !important;
     font-weight: 500 !important;
-    padding: 3px 8px !important;
-    border-radius: 12px !important;
-    background: rgba(212, 175, 55, 0.06) !important;
-    border: 1px solid rgba(212, 175, 55, 0.25) !important;
-    color: rgba(255, 223, 115, 0.75) !important;
+    padding: 2px 7px !important;
+    border-radius: 10px !important;
+    background: rgba(212, 175, 55, 0.05) !important;
+    border: 1px solid rgba(212, 175, 55, 0.22) !important;
+    color: rgba(255, 223, 115, 0.72) !important;
+    box-shadow: none !important;
+    letter-spacing: 0.8px !important;
   }
   .card-presents {
     font-size: 0.74rem !important;
