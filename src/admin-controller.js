@@ -320,6 +320,9 @@ function initAdminAuthFlow() {
             if (currentSession && currentSession.role === 'superadmin') {
               loadAdminPortal();
             }
+          } else if (msg.data.type === 'guest_rsvp' && msg.data.slug === activeEventSlug) {
+            renderGuestTable();
+            window.showAdminToast(`✨ New RSVP from ${msg.data.guest?.name || 'Guest'}!`);
           }
         }
       };
