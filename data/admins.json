@@ -1,0 +1,12 @@
+[
+  {
+    "email": "nikita@romanov.com",
+    "password": "VIPPassword2026!",
+    "role": "admin",
+    "assignedSlugs": [
+      "nikita-30"
+    ],
+    "inviteToken": "token_nshx3je4p_1786807608207",
+    "createdAt": "2026-08-15T15:26:48.209Z"
+  }
+]
