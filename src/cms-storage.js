@@ -865,6 +865,32 @@ class CMSStorageEngine {
   }
 
   // --- Guests Management (Isolated per event slug) ---
+  async syncGuestsWithServer(slug) {
+    if (!slug || slug === 'default') slug = 'master_default';
+    try {
+      const res = await fetch(`${this.getApiBaseUrl()}/api/events/${encodeURIComponent(slug)}/guests`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success && Array.isArray(data.guests)) {
+          const localGuests = this.getGuests(slug);
+          const mergedMap = new Map();
+          localGuests.forEach(g => {
+            if (g.email) mergedMap.set(g.email.toLowerCase(), g);
+            else if (g.passId) mergedMap.set(g.passId, g);
+          });
+          data.guests.forEach(g => {
+            if (g.email) mergedMap.set(g.email.toLowerCase(), g);
+            else if (g.passId) mergedMap.set(g.passId, g);
+          });
+          const mergedList = Array.from(mergedMap.values());
+          localStorage.setItem(`cms_event_${slug}_guests`, JSON.stringify(mergedList));
+          return mergedList;
+        }
+      }
+    } catch (err) {}
+    return this.getGuests(slug);
+  }
+
   getGuests(slug) {
     if (!slug || slug === 'default') slug = 'master_default';
     try {
