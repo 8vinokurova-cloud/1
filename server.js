@@ -338,23 +338,15 @@ app.post('/api/events/:slug/guests', async (req, res) => {
   const allGuests = readJsonFile('guests.json', {});
   if (!allGuests[slug]) allGuests[slug] = [];
 
-  const existingIdx = allGuests[slug].findIndex(
-    g => (g.email || '').toLowerCase() === guestData.email.toLowerCase()
-  );
-
   const mono = (guestData.monogramPrefix || 'VIP').slice(0, 3).toUpperCase();
   const passId = guestData.passId || `${mono}-${Math.floor(1000 + Math.random() * 9000)}-VIP`;
 
   guestData.passId = passId;
+  guestData.checkedIn = guestData.checkedIn || false;
+  guestData.createdAt = guestData.createdAt || new Date().toISOString();
   guestData.updatedAt = new Date().toISOString();
 
-  if (existingIdx >= 0) {
-    allGuests[slug][existingIdx] = { ...allGuests[slug][existingIdx], ...guestData };
-  } else {
-    guestData.checkedIn = false;
-    guestData.createdAt = new Date().toISOString();
-    allGuests[slug].unshift(guestData);
-  }
+  allGuests[slug].unshift(guestData);
 
   writeJsonFile('guests.json', allGuests);
 
