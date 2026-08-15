@@ -1,12 +1,13 @@
 [
   {
-    "email": "nikita@romanov.com",
-    "password": "VIPPassword2026!",
-    "role": "admin",
+    "id": "admin-super",
+    "name": "Super Admin",
+    "email": "8vinokurova@gmail.com",
+    "password": "1Lytham!",
+    "role": "superadmin",
     "assignedSlugs": [
-      "nikita-30"
+      "*"
     ],
-    "inviteToken": "token_nshx3je4p_1786807608207",
-    "createdAt": "2026-08-15T15:26:48.209Z"
+    "createdAt": "2026-08-01T00:00:00.000Z"
   }
 ]
