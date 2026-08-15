@@ -192,8 +192,8 @@
     "cocktail1": "Dom Pérignon Vintage Champagne",
     "cocktail2": "French 75 (Gin, Champagne, Lemon)",
     "cocktail3": "Smoked Velvet Espresso Martini",
-    "rsvpNameLabel": "First Name",
-    "rsvpNamePlaceholder": "e.g. Genevieve",
+    "rsvpNameLabel": "Your First Name *",
+    "rsvpNamePlaceholder": "e.g. Lady Genevieve",
     "rsvpLastNameLabel": "Last Name",
     "rsvpLastNamePlaceholder": "e.g. Sterling",
     "rsvpAttendingLabel": "Will You Grace Us With Your Presence? *",
@@ -293,7 +293,10 @@
     "aboutSectionSub": "AN INTIMATE MESSAGE",
     "rsvpSectionSub": "EXCLUSIVE REGISTRATION",
     "registrySectionSub": "GIFTS & CONTRIBUTIONS",
-    "updatedAt": "2026-08-15T18:12:19.754Z"
+    "updatedAt": "2026-08-15T18:12:19.754Z",
+    "heroChapterPrefix": "CHAPTER",
+    "rsvpEmailLabel": "Surname *",
+    "rsvpEmailPlaceholder": "Sterling"
   },
   "nana": {
     "slug": "nana",
@@ -494,10 +497,10 @@
     "cocktail1": "Dom P��rignon Vintage Champagne",
     "cocktail2": "French 75 (Gin, Champagne, Lemon)",
     "cocktail3": "Smoked Velvet Espresso Martini",
-    "rsvpNameLabel": "Имя гостя",
+    "rsvpNameLabel": "Имя гостя *",
     "rsvpNamePlaceholder": "например, Анна",
-    "rsvpEmailLabel": "Email for VIP Confirmation *",
-    "rsvpEmailPlaceholder": "genevieve@luxury.com",
+    "rsvpEmailLabel": "Фамилия гостя *",
+    "rsvpEmailPlaceholder": "например, Смирнова",
     "rsvpAttendingLabel": "Will You Grace Us With Your Presence? *",
     "rsvpAttendYesLabel": "Delighted to Attend",
     "rsvpAttendYesSub": "I will be there in high glamour",
@@ -634,6 +637,7 @@
     "vipPassBarcode": "#НМ-30-EXCLUSIVE",
     "rsvpSectionSub": "EXCLUSIVE REGISTRATION",
     "registrySectionSub": "GIFTS & CONTRIBUTIONS",
-    "vipPassGuestPlaceholder": "например, Анна Смирнова / Дорогой Гость"
+    "vipPassGuestPlaceholder": "например, Анна Смирнова / Дорогой Гость",
+    "heroChapterPrefix": "ГЛАВА"
   }
 }
