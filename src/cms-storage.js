@@ -937,11 +937,10 @@ class CMSStorageEngine {
       return;
     }
 
-    const headers = ["Pass ID", "Guest Name", "Email", "Attendance", "Plus-Ones", "Companion Name", "Dinner Choice", "Cocktail Choice", "Song Request", "Personal Note", "Door Check-in", "Registered At"];
+    const headers = ["Pass ID", "Guest Name", "Attendance", "Plus-Ones", "Companion Name", "Dinner Choice", "Cocktail Choice", "Song Request", "Personal Note", "Door Check-in", "Registered At"];
     const rows = list.map(g => [
       `"${g.passId || ''}"`,
       `"${g.name || ''}"`,
-      `"${g.email || ''}"`,
       `"${g.attendance || ''}"`,
       `"${g.plusOneCount || '0'}"`,
       `"${g.plusOneName || ''}"`,
@@ -950,7 +949,7 @@ class CMSStorageEngine {
       `"${(g.song || '').replace(/"/g, '""')}"`,
       `"${(g.message || '').replace(/"/g, '""')}"`,
       `"${g.checkedIn ? 'CHECKED IN' : 'PENDING'}"`,
-      `"${g.timestamp || ''}"`
+      `"${g.createdAt || g.timestamp || ''}"`
     ]);
 
     const csvContent = "\uFEFF" + [headers.join(","), ...rows.map(r => r.join(","))].join("\r\n");
