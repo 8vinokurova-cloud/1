@@ -626,36 +626,23 @@ class CMSStorageEngine {
   async syncWithServer(slug) {
     if (!slug || slug === 'default') slug = 'master_default';
     try {
-      const res = await fetch(`${this.getApiBaseUrl()}/api/events/${encodeURIComponent(slug)}`);
+      const url = `${this.getApiBaseUrl()}/api/events/${encodeURIComponent(slug)}?_t=${Date.now()}`;
+      const res = await fetch(url, {
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache'
+        }
+      });
       if (res.ok) {
         const data = await res.json();
         if (data.success && data.config) {
           const remoteConfig = data.config;
-          const localRaw = localStorage.getItem(`cms_event_${slug}_config`);
-          let shouldUpdateLocal = false;
-
-          if (!localRaw) {
-            shouldUpdateLocal = true;
-          } else {
-            try {
-              const localParsed = JSON.parse(localRaw);
-              const localTime = new Date(localParsed.updatedAt || 0).getTime() || (typeof localParsed.updatedAt === 'number' ? localParsed.updatedAt : 0);
-              const remoteTime = new Date(remoteConfig.updatedAt || 0).getTime() || (typeof remoteConfig.updatedAt === 'number' ? remoteConfig.updatedAt : 0);
-              if (remoteTime > localTime) {
-                shouldUpdateLocal = true;
-              }
-            } catch (eP) {
-              shouldUpdateLocal = true;
-            }
+          localStorage.setItem(`cms_event_${slug}_config`, JSON.stringify(remoteConfig));
+          if (slug === 'master_default') {
+            localStorage.setItem('cms_master_config', JSON.stringify(remoteConfig));
           }
-
-          if (shouldUpdateLocal) {
-            localStorage.setItem(`cms_event_${slug}_config`, JSON.stringify(remoteConfig));
-            if (slug === 'master_default') {
-              localStorage.setItem('cms_master_config', JSON.stringify(remoteConfig));
-            }
-            return remoteConfig;
-          }
+          return remoteConfig;
         }
       }
     } catch (err) {}
@@ -664,7 +651,14 @@ class CMSStorageEngine {
 
   async syncAllEventsFromServer() {
     try {
-      const res = await fetch(`${this.getApiBaseUrl()}/api/events`);
+      const url = `${this.getApiBaseUrl()}/api/events?_t=${Date.now()}`;
+      const res = await fetch(url, {
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache'
+        }
+      });
       if (res.ok) {
         const data = await res.json();
         if (data.success && data.events) {
@@ -674,10 +668,9 @@ class CMSStorageEngine {
             deletedSlugs = JSON.parse(localStorage.getItem('cms_deleted_slugs') || '[]');
           } catch (e) {}
 
-          // 1. Sync & update server configs into local storage (skipping deleted ones)
+          // 1. Sync & update server configs unconditionally into local storage (skipping deleted ones)
           for (const slug of serverSlugs) {
             if (deletedSlugs.includes(slug)) {
-              // Ensure server deletes it too if still present
               try {
                 await fetch(`${this.getApiBaseUrl()}/api/events/${encodeURIComponent(slug)}`, { method: 'DELETE' });
               } catch (eDel) {}
@@ -685,22 +678,7 @@ class CMSStorageEngine {
             }
 
             const serverConfig = data.events[slug];
-            if (!serverConfig) continue;
-            const localRaw = localStorage.getItem(`cms_event_${slug}_config`);
-            let shouldUpdate = false;
-            if (!localRaw) {
-              shouldUpdate = true;
-            } else {
-              try {
-                const localParsed = JSON.parse(localRaw);
-                const localTime = new Date(localParsed.updatedAt || 0).getTime() || (typeof localParsed.updatedAt === 'number' ? localParsed.updatedAt : 0);
-                const remoteTime = new Date(serverConfig.updatedAt || 0).getTime() || (typeof serverConfig.updatedAt === 'number' ? serverConfig.updatedAt : 0);
-                if (remoteTime > localTime) shouldUpdate = true;
-              } catch (e) {
-                shouldUpdate = true;
-              }
-            }
-            if (shouldUpdate) {
+            if (serverConfig) {
               localStorage.setItem(`cms_event_${slug}_config`, JSON.stringify(serverConfig));
             }
           }
@@ -871,7 +849,14 @@ class CMSStorageEngine {
   async syncGuestsWithServer(slug) {
     if (!slug || slug === 'default') slug = 'master_default';
     try {
-      const res = await fetch(`${this.getApiBaseUrl()}/api/events/${encodeURIComponent(slug)}/guests`);
+      const url = `${this.getApiBaseUrl()}/api/events/${encodeURIComponent(slug)}/guests?_t=${Date.now()}`;
+      const res = await fetch(url, {
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache'
+        }
+      });
       if (res.ok) {
         const data = await res.json();
         if (data.success && Array.isArray(data.guests)) {
