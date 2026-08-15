@@ -613,16 +613,14 @@ class CMSStorageEngine {
   getApiBaseUrl() {
     if (typeof window !== 'undefined') {
       if (window.CUSTOM_API_BASE_URL) return window.CUSTOM_API_BASE_URL;
-      // If served directly from Render or cloud domain, use relative paths
-      if (window.location.hostname.includes('onrender.com') || window.location.hostname.includes('railway.app') || window.location.hostname.includes('glitch.me')) {
+      // If running directly on the Render server domain or localhost:3000, use relative paths
+      if (window.location.hostname.endsWith('onrender.com') || (window.location.hostname === 'localhost' && window.location.port === '3000')) {
         return '';
       }
-      // If opened locally on PC (file:// or Live Server), automatically route to the 24/7 cloud server
-      if (window.location.protocol === 'file:' || (window.location.port && window.location.port !== '3000')) {
-        return 'https://one-hxkk.onrender.com';
-      }
+      // For Vercel (*.vercel.app), Telegram webview, Mobile Safari, Live Server, file://, etc:
+      return 'https://one-hxkk.onrender.com';
     }
-    return '';
+    return 'https://one-hxkk.onrender.com';
   }
 
   async syncWithServer(slug) {
