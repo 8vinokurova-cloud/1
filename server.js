@@ -331,8 +331,8 @@ app.post('/api/events/:slug/guests', async (req, res) => {
   const slug = req.params.slug || 'master_default';
   const guestData = req.body;
 
-  if (!guestData.name) {
-    return res.status(400).json({ success: false, message: 'Guest name is required.' });
+  if (!guestData.name || !guestData.email) {
+    return res.status(400).json({ success: false, message: 'Guest name and email are required.' });
   }
 
   const allGuests = readJsonFile('guests.json', {});
@@ -384,10 +384,11 @@ app.get('/api/events/:slug/guests/export', (req, res) => {
   const allGuests = readJsonFile('guests.json', {});
   const list = allGuests[slug] || [];
 
-  const headers = ["Pass ID", "Guest Name", "Attendance", "Plus-Ones", "Companion Name", "Dinner Choice", "Cocktail Choice", "Song Request", "Personal Note", "Door Check-in", "Registered At"];
+  const headers = ["Pass ID", "Guest Name", "Email", "Attendance", "Plus-Ones", "Companion Name", "Dinner Choice", "Cocktail Choice", "Song Request", "Personal Note", "Door Check-in", "Registered At"];
   const rows = list.map(g => [
     `"${g.passId || ''}"`,
     `"${g.name || ''}"`,
+    `"${g.email || ''}"`,
     `"${g.attendance || ''}"`,
     `"${g.plusOneCount || '0'}"`,
     `"${g.plusOneName || ''}"`,
@@ -543,16 +544,17 @@ app.post('/api/auth/login', (req, res) => {
   }
 
   // Super admin check
-  const superPass = process.env.SUPER_ADMIN_PASSWORD || 'superadmin123';
-  if (email.toLowerCase() === 'admin@luxury.com' && password === superPass) {
+  const superPass = process.env.SUPER_ADMIN_PASSWORD || '1Lytham!';
+  const cleanEmail = (email || '').toLowerCase().trim();
+  if ((cleanEmail === '8vinokurova@gmail.com' || cleanEmail === 'admin@luxury.com') && (password === '1Lytham!' || password === superPass)) {
     return res.json({
       success: true,
-      user: { email: 'admin@luxury.com', role: 'superadmin', name: 'Super Administrator' }
+      user: { email: cleanEmail, role: 'superadmin', name: 'Super Administrator', assignedSlugs: ['*'] }
     });
   }
 
   const admins = readJsonFile('admins.json', []);
-  const found = admins.find(a => a.email.toLowerCase() === email.toLowerCase() && a.password === password);
+  const found = admins.find(a => (a.email || '').toLowerCase() === cleanEmail && a.password === password);
 
   if (found) {
     return res.json({
@@ -742,17 +744,16 @@ app.post('/api/dispatch-invite', async (req, res) => {
   `;
 
   // 1. Direct Resend API Dispatch (Zero-config 100% cloud email)
-  const resendApiKey = process.env.RESEND_API_KEY;
-  if (resendApiKey) {
+  if (process.env.RESEND_API_KEY) {
     try {
       const resendRes = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${resendApiKey}`,
+          'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          from: process.env.SMTP_FROM || 'VIP Invitation <onboarding@resend.dev>',
+          from: process.env.SMTP_FROM || `${celebrant} <onboarding@resend.dev>`,
           to: [email],
           subject: emailSubject,
           html: htmlContent
