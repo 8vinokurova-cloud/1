@@ -705,13 +705,23 @@ class CMSStorageEngine {
 
   async saveToServer(slug, config) {
     if (!slug || slug === 'default') slug = 'master_default';
+    const url = `${this.getApiBaseUrl()}/api/events/${encodeURIComponent(slug)}`;
+    const jsonBody = JSON.stringify(config);
     try {
-      await fetch(`${this.getApiBaseUrl()}/api/events/${encodeURIComponent(slug)}`, {
+      await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(config)
+        body: jsonBody,
+        keepalive: true
       });
-    } catch (err) {}
+    } catch (err) {
+      if (navigator.sendBeacon) {
+        try {
+          const blob = new Blob([jsonBody], { type: 'application/json' });
+          navigator.sendBeacon(url, blob);
+        } catch (eBeacon) {}
+      }
+    }
   }
 
   async uploadFileToServer(file) {
