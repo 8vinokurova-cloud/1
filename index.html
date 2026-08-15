@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHAPTER 25 • Aurelia's Golden Soirée | Exclusive Birthday Invitation</title>
+  <meta name="description" content="An exclusive haute couture 25th birthday celebration for Miss Aurelia Vance. Saturday, September 26, 2026. Request your VIP pass.">
+
+  <!-- Optimized Fast Google Fonts (Essential Luxury Editorial Typography) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;700&family=Italiana&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 CDN for Luxury Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="./src/style.css">
+
+  <!-- Immediate Inline Fallback Script -->
+  <script>
+    window.openEnvelopeNow = function() {
+      var gk = document.getElementById('envelope-gatekeeper');
+      var env = document.getElementById('interactive-envelope');
+      if (env) env.classList.add('unsealed');
+      setTimeout(function() {
+        if (gk) gk.classList.add('opened');
+        document.body.classList.remove('loading-state');
+        if (window.luxuryAudio && window.luxuryAudio.toggleLoungeAmbiance) {
+          window.luxuryAudio.toggleLoungeAmbiance();
+        }
+      }, 5000);
+    };
+  </script>
+</head>
+<body class="loading-state">
+
+  <!-- Background Particle Stardust Canvas -->
+  <canvas id="stardust-canvas"></canvas>
+
+  <!-- Ambient Luxury Glow Orbs -->
+  <div class="ambient-orb orb-1"></div>
+  <div class="ambient-orb orb-2"></div>
+  <div class="ambient-orb orb-3"></div>
+
+  <!-- ========================================================================= -->
+  <!-- 1. LUXURY PRELOADER / WAX SEAL ENVELOPE GATEWAY -->
+  <!-- ========================================================================= -->
+  <div id="envelope-gatekeeper" class="envelope-overlay">
+    <div class="envelope-modal">
+      <div class="envelope-crest-top">
+        <span class="crest-monogram env-monogram-top" id="gatekeeper-monogram">AV</span>
+        <span class="crest-subtitle" id="gatekeeper-subtitle">PRIVATE INVITATION • NO. XXV</span>
+      </div>
+
+      <!-- 3D Realistic Envelope Structure -->
+      <div class="luxury-envelope" id="interactive-envelope" onclick="window.openEnvelopeNow && window.openEnvelopeNow()">
+        <div class="envelope-flap-back"></div>
+        
+        <!-- Emerging Customized 3D VIP Invitation Pass -->
+        <div class="envelope-paper-letter" id="envelope-letter" onclick="window.openEnvelopeNow && window.openEnvelopeNow()">
+          <div class="letter-inner-content env-vip-card-layout">
+            <div class="card-holographic-sheen" id="env-holo-sheen"></div>
+            
+            <div class="card-top-row">
+              <div class="card-crest">
+                <span class="crest-monogram env-monogram">AV</span>
+                <span class="crest-code env-code">VIP • ALL ACCESS</span>
+              </div>
+              <div class="card-tier-badge env-tier">
+                <i class="fa-solid fa-diamond"></i>
+                <span>HAUTE GALA</span>
+              </div>
+            </div>
+
+            <div class="card-center-details">
+              <span class="card-sub-presents env-presents">CORDIALLY INVITES</span>
+              <h3 class="card-guest-name env-guest">Valued Guest & Plus One</h3>
+              <p class="card-occasion env-occasion">TO CELEBRATE THE 25TH BIRTHDAY OF</p>
+              <h2 class="card-protagonist-name env-protagonist">Aurelia Vance</h2>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-meta-col">
+                <span class="c-meta-lbl">DATE</span>
+                <strong class="c-meta-val env-date">26.09.2026</strong>
+              </div>
+              <div class="card-meta-col">
+                <span class="c-meta-lbl">TIME</span>
+                <strong class="c-meta-val env-time">19:00 CEST</strong>
+              </div>
+              <div class="card-meta-col">
+                <span class="c-meta-lbl">VENUE</span>
+                <strong class="c-meta-val env-venue">Penthouse Villa</strong>
+              </div>
+              <div class="card-barcode-box">
+                <i class="fa-solid fa-qrcode card-qr-icon"></i>
+                <span class="barcode-num env-barcode">#AV-25-EXCLUSIVE</span>
+              </div>
+            </div>
+
+            <div class="card-foil-border"></div>
+          </div>
+        </div>
+        <div class="envelope-pocket"></div>
+        
+        <!-- Wax Seal Button -->
+        <div class="wax-seal" id="wax-seal-btn" role="button" tabindex="0" onclick="window.openEnvelopeNow && window.openEnvelopeNow()" aria-label="Break Wax Seal to Open Invitation">
+          <div class="wax-seal-outer-rim"></div>
+          <div class="wax-seal-core">
+            <span class="wax-seal-numeral" id="gatekeeper-seal-numeral">XXV</span>
+          </div>
+          <div class="wax-seal-tooltip" id="gatekeeper-seal-tooltip">Click to Break Seal</div>
+        </div>
+
+        <div class="envelope-flap-fold" id="envelope-flap"></div>
+      </div>
+
+      <div class="gatekeeper-actions">
+        <p class="gatekeeper-hint" id="gatekeeper-hint-text">Touch the gold wax seal to open invitation</p>
+        <button id="direct-enter-btn" class="btn-text-gold" onclick="window.openEnvelopeNow && window.openEnvelopeNow(true)">
+          <span id="gatekeeper-enter-btn-text">Enter Directly</span> <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <div style="margin-top: 10px;">
+          <a href="admin.html" class="btn-text-gold" style="font-size: 0.72rem; padding: 6px 14px; border-color: rgba(212, 175, 55, 0.4); color: #FFDF73; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; border-radius: 20px;">
+            <i class="fa-solid fa-crown"></i> <span>Organizer Studio Login</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- 2. LUXURY FLOATING HEADER & NAVIGATION -->
+  <!-- ========================================================================= -->
+  <header class="luxury-nav" id="main-nav">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <span class="logo-monogram">AV</span>
+        <div class="logo-text">
+          <span class="brand-title">AURELIA VANCE</span>
+          <span class="brand-sub">CHAPTER 25 • GALA</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="#about" class="nav-link" id="nav-item-about">The Soirée</a>
+        <a href="#vip-card" class="nav-link" id="nav-item-vippass">VIP Pass</a>
+        <a href="#timeline" class="nav-link" id="nav-item-itinerary">Itinerary</a>
+        <a href="#dress-code" class="nav-link" id="nav-item-dresscode">Dress Code</a>
+        <a href="#venue" class="nav-link" id="nav-item-venue">Venue</a>
+        <a href="#toasts" class="nav-link" id="nav-item-toastwall">Toast Wall</a>
+        <a href="admin.html" class="nav-link" style="color: #FFDF73; font-weight: 600;"><i class="fa-solid fa-crown"></i> Organizer CMS</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Audio Lounge Player Toggle -->
+        <button id="audio-toggle-btn" class="audio-btn" title="Toggle Luxury Lounge Ambiance" aria-label="Toggle Ambiance Sound">
+          <div class="sound-wave">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <span class="audio-label" id="nav-audio-label">Lounge Music</span>
+          <i class="fa-solid fa-volume-xmark" id="audio-icon"></i>
+        </button>
+
+        <a href="#rsvp" class="btn-gold-shimmer nav-rsvp-btn">
+          <span id="nav-rsvp-btn-text">VIP RSVP</span>
+          <i class="fa-solid fa-sparkles"></i>
+        </a>
+
+        <!-- Mobile Menu Hamburger -->
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Open Navigation Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ========================================================================= -->
+  <!-- 3. HERO SECTION (EDITORIAL VOGUE LUXURY COVER) -->
+  <!-- ========================================================================= -->
+  <main>
+    <section class="hero-section" id="hero">
+      <div class="hero-container">
+        
+        <!-- Left Editorial Column -->
+        <div class="hero-content">
+          <div class="hero-badge animate-fade-up">
+            <span class="badge-sparkle">✦</span>
+            <span class="badge-text">EXCLUSIVE 25TH MILESTONE CELEBRATION</span>
+            <span class="badge-sparkle">✦</span>
+          </div>
+
+          <h1 class="hero-title animate-fade-up delay-1">
+            <span class="hero-celebrant-name gold-gradient-text" id="hero-celebrant-name">AURELIA VANCE</span>
+            <span class="editorial-line-1">CHAPTER</span>
+            <span class="editorial-line-2 gold-gradient-text">TWENTY-FIVE</span>
+            <span class="editorial-signature">A Quarter Century in Haute Couture</span>
+          </h1>
+
+          <p class="hero-description animate-fade-up delay-2">
+            An evening of effortless glamour, vintage champagne, gourmet gastronomy, and midnight revelry celebrating the 25th birthday of <strong class="text-champagne">Miss Aurelia Vance</strong>.
+          </p>
+
+          <div class="hero-meta-grid animate-fade-up delay-3">
+            <div class="meta-item">
+              <i class="fa-regular fa-calendar-star meta-icon"></i>
+              <div class="meta-info">
+                <span class="meta-label">THE DATE</span>
+                <strong class="meta-val">Saturday, Sept 26, 2026</strong>
+              </div>
+            </div>
+
+            <div class="meta-item">
+              <i class="fa-regular fa-clock meta-icon"></i>
+              <div class="meta-info">
+                <span class="meta-label">RECEPTION</span>
+                <strong class="meta-val">19:00 Till Late</strong>
+              </div>
+            </div>
+
+            <div class="meta-item">
+              <i class="fa-solid fa-location-dot meta-icon"></i>
+              <div class="meta-info">
+                <span class="meta-label">LOCATION</span>
+                <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="hero-location-link" style="text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 6px;">
+                  <strong class="meta-val hero-location-val">Villa Solaria Penthouse, Milan</strong>
+                  <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.72rem; color: #FFDF73;"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Action Buttons -->
+          <div class="hero-cta-group animate-fade-up delay-4">
+            <a href="#rsvp" class="btn-luxury-primary">
+              <span class="btn-bg-glow"></span>
+              <span class="btn-text">Confirm VIP Attendance</span>
+              <i class="fa-solid fa-arrow-right-long"></i>
+            </a>
+
+            <button id="add-to-cal-hero-btn" class="btn-luxury-secondary">
+              <i class="fa-regular fa-calendar-plus"></i>
+              <span>Save to Calendar</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Hero Visual Column (Editorial Portrait + Floating Gold Accents) -->
+        <div class="hero-visual-wrapper animate-fade-up delay-2">
+          <div class="portrait-frame-container">
+            <div class="portrait-gold-border"></div>
+            <div class="portrait-image-box">
+              <img src="./assets/hero_portrait.jpg" alt="Victoria Sterling 25th Birthday Portrait" class="hero-portrait-img" loading="eager">
+              <div class="portrait-gradient-overlay"></div>
+
+              <div class="floating-quote bottom-left">
+                <span class="quote-symbol">“</span>
+                <p>Pour the champagne, turn up the music, and let's toast to the most glamorous chapter yet.</p>
+                <span class="quote-author">— Victoria</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Live Milestone Countdown Bar -->
+      <div class="milestone-countdown-strip">
+        <div class="countdown-heading">
+          <span class="countdown-eyebrow">COUNTDOWN TO THE GRAND GALA</span>
+          <h3 class="countdown-title">The Celebration Begins In</h3>
+        </div>
+
+        <div class="countdown-timer-grid" id="countdown-timer">
+          <div class="countdown-unit">
+            <div class="unit-box">
+              <span class="unit-number" id="cd-days">48</span>
+            </div>
+            <span class="unit-label">DAYS</span>
+          </div>
+
+          <span class="countdown-sep">:</span>
+
+          <div class="countdown-unit">
+            <div class="unit-box">
+              <span class="unit-number" id="cd-hours">14</span>
+            </div>
+            <span class="unit-label">HOURS</span>
+          </div>
+
+          <span class="countdown-sep">:</span>
+
+          <div class="countdown-unit">
+            <div class="unit-box">
+              <span class="unit-number" id="cd-minutes">32</span>
+            </div>
+            <span class="unit-label">MINUTES</span>
+          </div>
+
+          <span class="countdown-sep">:</span>
+
+          <div class="countdown-unit">
+            <div class="unit-box">
+              <span class="unit-number" id="cd-seconds">19</span>
+            </div>
+            <span class="unit-label">SECONDS</span>
+          </div>
+        </div>
+
+        <div class="countdown-quick-actions">
+          <span class="spots-left-tag"><i class="fa-solid fa-gem"></i> Strictly Private & Exclusive (Guestlist Only)</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- 4. ABOUT THE OCCASION & INTIMATE INTRO -->
+    <!-- ========================================================================= -->
+    <section class="section-container about-section" id="about">
+      <div class="section-header text-center">
+        <span class="section-sub-gold">AN INTIMATE MESSAGE</span>
+        <h2 class="section-title">A Quarter Century of Memories</h2>
+        <div class="gold-filigree-divider">
+          <span>❦</span>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card glass-card">
+          <div class="card-icon-gold"><i class="fa-solid fa-martini-glass-citrus"></i></div>
+          <h3 class="card-heading">The Vision</h3>
+          <p>Twenty-five is a milestone of ambition, elegance, and unforgettable connections. We are gathering our dearest circle for a night drenched in champagne, cinematic music, and pure euphoria.</p>
+        </div>
+
+        <div class="about-card glass-card featured">
+          <div class="card-icon-gold"><i class="fa-solid fa-crown"></i></div>
+          <h3 class="card-heading">The Experience</h3>
+          <p>From sunset caviar & Bellini receptions on the sky terrace to a bespoke candlelight banquet and high-energy after-party beneath crystal chandeliers.</p>
+        </div>
+
+        <div class="about-card glass-card">
+          <div class="card-icon-gold"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <h3 class="card-heading">The Dress Code</h3>
+          <p>Haute Glamour & Black Tie. Think obsidian silks, liquid gold satins, tailored velvet, and statement diamond brilliance. Let's make every photo look like a runway spread.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- 5. 3D HOLOGRAPHIC VIP INVITATION CARD (INTERACTIVE TILT) -->
+    <!-- ========================================================================= -->
+    <section class="section-container card-showcase-section" id="vip-card">
+      <div class="section-header text-center">
+        <span class="section-sub-gold">YOUR ALL-ACCESS PASS</span>
+        <h2 class="section-title">The Holographic VIP Invitation</h2>
+        <p class="section-lead">Hover and move your mouse to admire the 3D foil shine and holographic luster.</p>
+      </div>
+
+      <div class="card-3d-scene" id="card-3d-container">
+        <div class="vip-invitation-card" id="vip-invitation-card">
+          
+          <!-- Front Face -->
+          <div class="card-face card-front">
+            <div class="card-holographic-sheen" id="holo-sheen"></div>
+            <div class="card-noise-texture"></div>
+
+            <div class="card-top-row">
+              <div class="card-crest">
+                <span class="crest-monogram">AV</span>
+                <span class="crest-code">VIP • ALL ACCESS</span>
+              </div>
+              <div class="card-tier-badge">
+                <i class="fa-solid fa-diamond"></i>
+                <span>HAUTE GALA</span>
+              </div>
+            </div>
+
+            <div class="card-center-details">
+              <span class="card-sub-presents">CORDIALLY INVITES</span>
+              <h3 class="card-guest-name" id="preview-guest-name">Valued Guest & Plus One</h3>
+              <p class="card-occasion">TO CELEBRATE THE 25TH BIRTHDAY OF</p>
+              <h2 class="card-protagonist-name">Aurelia Vance</h2>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-meta-col">
+                <span class="c-meta-lbl">DATE</span>
+                <strong class="c-meta-val">26.09.2026</strong>
+              </div>
+              <div class="card-meta-col">
+                <span class="c-meta-lbl">TIME</span>
+                <strong class="c-meta-val">19:00 CEST</strong>
+              </div>
+              <div class="card-meta-col">
+                <span class="c-meta-lbl">VENUE</span>
+                <strong class="c-meta-val">Penthouse Villa</strong>
+              </div>
+              <div class="card-barcode-box">
+                <i class="fa-solid fa-qrcode card-qr-icon"></i>
+                <span class="barcode-num">#AV-25-EXCLUSIVE</span>
+              </div>
+            </div>
+
+            <!-- Foil Trim Border -->
+            <div class="card-foil-border"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-controls text-center">
+        <p class="tilt-hint"><i class="fa-solid fa-arrows-up-down-left-right"></i> Move cursor across card for 3D gold refraction</p>
+        <div class="personalize-input-box">
+          <label for="live-guest-input">Type your name to preview your pass:</label>
+          <div class="input-with-icon">
+            <i class="fa-solid fa-pen-nib"></i>
+            <input type="text" id="live-guest-input" placeholder="e.g. Lady Genevieve / Marcus Sterling" maxlength="32">
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- 6. THE SOIRÉE ITINERARY & TIMELINE -->
+    <!-- ========================================================================= -->
+    <section class="section-container timeline-section" id="timeline">
+      <div class="section-header text-center">
+        <span class="section-sub-gold">AN UNFORGETTABLE EVENING</span>
+        <h2 class="section-title">The Soirée Itinerary</h2>
+        <p class="section-lead">A seamless orchestration of haute cuisine, sparkling toasts, and vibrant rhythms.</p>
+      </div>
+
+      <div class="luxury-timeline-wrapper">
+        <div class="timeline-central-spine"></div>
+
+        <!-- Item 1 -->
+        <div class="timeline-item left animate-timeline">
+          <div class="timeline-time-badge">
+            <span class="time-main">19:00</span>
+            <span class="time-sub">TWILIGHT</span>
+          </div>
+          <div class="timeline-content-card glass-card">
+            <div class="t-card-icon"><i class="fa-solid fa-champagne-glasses"></i></div>
+            <h3 class="t-card-title">Red Carpet & Champagne Welcome</h3>
+            <p class="t-card-desc">Step onto the illuminated grand terrace. Vintage Dom Pérignon, French 75 cocktails, fresh oysters & caviar canapés served as the sun sets over the skyline.</p>
+            <span class="t-card-tag">Ambiance: Acoustic Saxophone & Chilled Jazz</span>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="timeline-item right animate-timeline">
+          <div class="timeline-time-badge">
+            <span class="time-main">20:15</span>
+            <span class="time-sub">BANQUET</span>
+          </div>
+          <div class="timeline-content-card glass-card">
+            <div class="t-card-icon"><i class="fa-solid fa-utensils"></i></div>
+            <h3 class="t-card-title">Haute Gastronomy Dinner</h3>
+            <p class="t-card-desc">An intimate four-course candlelit dinner orchestrated by Michelin-starred culinary artists, paired with curated Grand Cru vintages and artisan delicacies.</p>
+            <span class="t-card-tag">Experience: Bespoke Tasting Menu</span>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="timeline-item left animate-timeline">
+          <div class="timeline-time-badge">
+            <span class="time-main">21:45</span>
+            <span class="time-sub">CEREMONY</span>
+          </div>
+          <div class="timeline-content-card glass-card highlight-glow">
+            <div class="t-card-icon"><i class="fa-solid fa-cake-candles"></i></div>
+            <h3 class="t-card-title">The 25th Champagne Fountain & Cake</h3>
+            <p class="t-card-desc">Gather around the monumental 7-tier crystal champagne coupe tower and the bespoke edible gold birthday cake. The official toast to Chapter 25.</p>
+            <span class="t-card-tag gold-tag">Milestone Moment & Sparklers</span>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="timeline-item right animate-timeline">
+          <div class="timeline-time-badge">
+            <span class="time-main">22:30</span>
+            <span class="time-sub">NIGHTFALL</span>
+          </div>
+          <div class="timeline-content-card glass-card">
+            <div class="t-card-icon"><i class="fa-solid fa-music"></i></div>
+            <h3 class="t-card-title">DJ Set, Cocktails & Starlight Dancing</h3>
+            <p class="t-card-desc">The tempo rises. World-class house and disco anthems by Guest DJ, illuminated dance floor, signature espresso martini bar, and unforgettable high energy.</p>
+            <span class="t-card-tag">Vibe: High Fashion & Euphoria</span>
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="timeline-item left animate-timeline">
+          <div class="timeline-time-badge">
+            <span class="time-main">01:30</span>
+            <span class="time-sub">AFTER HOURS</span>
+          </div>
+          <div class="timeline-content-card glass-card">
+            <div class="t-card-icon"><i class="fa-solid fa-moon-stars"></i></div>
+            <h3 class="t-card-title">Midnight Truffles & Secret Afterglow</h3>
+            <p class="t-card-desc">Late-night gourmet sliders, Belgian dark chocolate truffles, artisanal mocktails, and intimate rooftop conversation under the starry night sky.</p>
+            <span class="t-card-tag">Till the early dawn</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- 7. DRESS CODE & AESTHETIC MOODBOARD -->
+    <!-- ========================================================================= -->
+    <section class="section-container dresscode-section" id="dress-code">
+      <div class="section-header text-center">
+        <span class="section-sub-gold" id="dresscode-sec-sub">SARTORIAL ELEGANCE</span>
+        <h2 class="section-title" id="dresscode-sec-title">The Dress Code: Haute Glamour</h2>
+        <p class="section-lead" id="dresscode-sec-lead">Dress to enchant. Think Black Tie, Red Carpet Luxury, Liquid Metals & Midnight Velvet.</p>
+      </div>
+
+      <div class="dresscode-grid">
+        <!-- Moodboard Visual Frame -->
+        <div class="dresscode-visual-box glass-card">
+          <div class="moodboard-img-wrapper">
+            <img id="preview-dress-code-img" src="./assets/dress_code.jpg" alt="Dress code flatlay moodboard with luxury jewelry and velvet" class="moodboard-img">
+            <div class="moodboard-caption">
+              <span class="caption-title">Haute Couture Moodboard</span>
+              <span class="caption-sub">Obsidian • Champagne Gold • Emerald Radiance</span>
+            </div>
+          </div>
+
+          <!-- Color Swatches -->
+          <div class="color-palette-bar">
+            <span class="palette-label">Curated Palette:</span>
+            <div class="swatches-container">
+              <div class="swatch-item" title="Obsidian Noir (#0A0A0C)">
+                <span class="swatch-circle" style="background: #0a0a0c; border: 1px solid #d4af37;"></span>
+                <span class="swatch-name">Obsidian</span>
+              </div>
+              <div class="swatch-item" title="Champagne Gold (#D4AF37)">
+                <span class="swatch-circle" style="background: linear-gradient(135deg, #F3E5AB, #D4AF37);"></span>
+                <span class="swatch-name">Champagne</span>
+              </div>
+              <div class="swatch-item" title="Brushed Bronze (#9b7b3e)">
+                <span class="swatch-circle" style="background: #9b7b3e;"></span>
+                <span class="swatch-name">Bronze</span>
+              </div>
+              <div class="swatch-item" title="Emerald Velvet (#0D3B2E)">
+                <span class="swatch-circle" style="background: #0D3B2E;"></span>
+                <span class="swatch-name">Emerald</span>
+              </div>
+              <div class="swatch-item" title="Oyster Pearl (#F9F6F0)">
+                <span class="swatch-circle" style="background: #F9F6F0;"></span>
+                <span class="swatch-name">Pearl</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Style Guide Details -->
+        <div class="dresscode-guide-box">
+          
+          <div class="guide-card glass-card">
+            <div class="guide-header">
+              <i class="fa-solid fa-person-dress guide-icon"></i>
+              <h3>For the Ladies</h3>
+            </div>
+            <ul class="guide-list">
+              <li><i class="fa-solid fa-check"></i> Floor-length silk, satin or metallic evening gowns.</li>
+              <li><i class="fa-solid fa-check"></i> Sparkling cocktail dresses with dramatic silhouettes.</li>
+              <li><i class="fa-solid fa-check"></i> Statement diamond jewelry, delicate strappy heels & chic clutches.</li>
+              <li><i class="fa-solid fa-check"></i> Hair & Makeup: Glossy editorial waves, luminous golden glow.</li>
+            </ul>
+          </div>
+
+          <div class="guide-card glass-card">
+            <div class="guide-header">
+              <i class="fa-solid fa-user-tie guide-icon"></i>
+              <h3>For the Gentlemen</h3>
+            </div>
+            <ul class="guide-list">
+              <li><i class="fa-solid fa-check"></i> Classic Black Tie tuxedos or midnight navy velvet jackets.</li>
+              <li><i class="fa-solid fa-check"></i> Crisp white dress shirts with black or gold cufflinks.</li>
+              <li><i class="fa-solid fa-check"></i> Polished Oxford patent leather shoes or designer loafers.</li>
+              <li><i class="fa-solid fa-check"></i> Silk bow ties or sharp pocket squares.</li>
+            </ul>
+          </div>
+
+          <!-- Note Alert -->
+          <div class="dresscode-alert glass-card">
+            <i class="fa-solid fa-sparkles alert-gold-icon"></i>
+            <div>
+              <strong id="dresscode-alert-title">Fashion Note:</strong>
+              <p id="dresscode-alert-desc">Casual wear, sneakers, and distressed denim are kindly not permitted. When in doubt, lean towards the most glamorous option!</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- 8. VENUE & PRIVATE CONCIERGE -->
+    <!-- ========================================================================= -->
+    <section class="section-container venue-section" id="venue">
+      <div class="section-header text-center">
+        <span class="section-sub-gold">THE DESTINATION</span>
+        <h2 class="section-title">The Penthouse & Sky Terrace</h2>
+        <p class="section-lead">Villa Solaria Estate • Milan, Italy</p>
+      </div>
+
+      <div class="venue-showcase-grid">
+        <!-- Left: Image & Specs -->
+        <div class="venue-image-wrapper glass-card">
+          <img id="venue-main-img" src="./assets/venue_soirée.jpg" alt="Villa Solaria Penthouse Ballroom and Terrace" class="venue-img">
+          <div class="venue-overlay-badge">
+            <i class="fa-solid fa-building-columns"></i>
+            <span id="venue-badge-text">PRIVATE ESTATE ACCESS</span>
+          </div>
+        </div>
+
+        <!-- Right: Practical Logistics -->
+        <div class="venue-details-card glass-card">
+          <h3 class="venue-title" id="venue-details-title">Villa Solaria Penthouse</h3>
+          <p class="venue-desc" id="venue-details-desc">Perched atop the historic hills, offering panoramic 360-degree views of the illuminated city, private marble gardens, and crystal ballroom.</p>
+
+          <div class="venue-amenities-list">
+            <div class="amenity-item valet-parking-item">
+              <div class="amenity-icon-box">
+                <i class="fa-solid fa-square-parking"></i>
+              </div>
+              <div class="amenity-info-wrap">
+                <div class="amenity-title-row">
+                  <strong id="venue-amenity1-title">Complimentary Valet Parking</strong>
+                  <span class="amenity-vip-badge" id="venue-amenity1-badge"><i class="fa-solid fa-car"></i> VIP Service</span>
+                </div>
+                <p id="venue-amenity1-desc">White-glove private valet at the grand gates upon arrival.</p>
+                <div class="valet-photo-container" id="venue-valet-box">
+                  <img id="valet-parking-photo" src="./assets/valet_parking.jpg" alt="Complimentary Luxury Valet Parking at Villa Solaria Penthouse" class="valet-img-thumb">
+                  <div class="valet-caption-pill">
+                    <i class="fa-solid fa-circle-check"></i> <span id="valet-caption-text">Private Valet Parking Pavilion</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="amenity-item">
+              <div class="amenity-icon-box">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <div class="amenity-info-wrap">
+                <strong id="venue-amenity2-title">Strict Guestlist Check-in</strong>
+                <p id="venue-amenity2-desc">Digital VIP boarding pass or RSVP name required for estate entry.</p>
+              </div>
+            </div>
+
+            <div class="amenity-item">
+              <div class="amenity-icon-box">
+                <i class="fa-solid fa-bed"></i>
+              </div>
+              <div class="amenity-info-wrap">
+                <strong id="venue-amenity3-title">Preferred Accommodation</strong>
+                <p id="venue-amenity3-desc">Private luxury suite discount at Grand Hotel Milano (Code: AURELIA25).</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Location Buttons -->
+          <div class="venue-action-buttons">
+            <a href="https://www.google.com/maps/search/?api=1&query=Via+Monte+Napoleone+28+Milan+Italy" id="open-gmaps-btn" target="_blank" rel="noopener noreferrer" class="btn-location">
+              <i class="fa-solid fa-map-location-dot"></i>
+              <span id="venue-map-btn-text">Open in Google Maps</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- 9. VIP RSVP CONCIERGE & INSTANT PASS GENERATOR -->
+    <!-- ========================================================================= -->
+    <section class="section-container rsvp-section" id="rsvp">
+      <div class="rsvp-wrapper glass-card">
+        
+        <div class="rsvp-header text-center">
+          <span class="section-sub-gold">EXCLUSIVE REGISTRATION</span>
+          <h2 class="section-title">VIP Concierge & RSVP</h2>
+          <p class="section-lead">Please confirm your attendance by <strong>September 10th, 2026</strong> to ensure your personalized culinary seating and VIP credential.</p>
+        </div>
+
+        <form id="rsvp-form" class="rsvp-luxury-form">
+          <div class="form-grid">
+            
+            <!-- Full Name -->
+            <div class="form-group">
+              <label for="rsvp-name" id="rsvp-lbl-name">Your Full Name <span class="req">*</span></label>
+              <div class="input-container">
+                <i class="fa-solid fa-user-tie input-icon"></i>
+                <input type="text" id="rsvp-name" required placeholder="e.g. Lady Genevieve Sterling">
+              </div>
+            </div>
+
+            <!-- Email Address with Real-Time Validation Feedback -->
+            <div class="form-group">
+              <label for="rsvp-email" id="rsvp-lbl-email">Email for VIP Confirmation <span class="req">*</span></label>
+              <div class="input-container" id="rsvp-email-container">
+                <i class="fa-solid fa-envelope input-icon"></i>
+                <input type="email" id="rsvp-email" required placeholder="genevieve@luxury.com" autocomplete="email">
+              </div>
+              <span id="rsvp-email-feedback" class="email-validation-hint" style="display: none; font-size: 0.72rem; margin-top: 5px; font-weight: 500;"></span>
+            </div>
+
+            <!-- Attendance Choice -->
+            <div class="form-group full-width">
+              <label id="rsvp-lbl-attending">Will You Grace Us With Your Presence? <span class="req">*</span></label>
+              <div class="radio-cards-grid">
+                <label class="radio-card selected">
+                  <input type="radio" name="attendance" value="attending" checked>
+                  <div class="radio-card-body">
+                    <i class="fa-solid fa-champagne-glass card-radio-icon"></i>
+                    <strong id="rsvp-btn-attending-lbl">Delighted to Attend</strong>
+                    <span id="rsvp-btn-attending-sub">I will be there in high glamour</span>
+                  </div>
+                </label>
+
+                <label class="radio-card">
+                  <input type="radio" name="attendance" value="declining">
+                  <div class="radio-card-body">
+                    <i class="fa-solid fa-heart-crack card-radio-icon"></i>
+                    <strong id="rsvp-btn-decline-lbl">Regretfully Decline</strong>
+                    <span id="rsvp-btn-decline-sub">Sending all my love from afar</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Plus One Option -->
+            <div class="form-group" id="plus-one-toggle-group">
+              <label for="rsvp-plusone-count" id="rsvp-lbl-plusone">Bringing a Companion?</label>
+              <div class="input-container">
+                <i class="fa-solid fa-user-group input-icon"></i>
+                <select id="rsvp-plusone-count">
+                  <option value="0">Solo (VIP Pass x1)</option>
+                  <option value="1">With 1 Distinguished Plus-One (VIP Pass x2)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Plus One Name (Conditional) -->
+            <div class="form-group" id="plus-one-name-group">
+              <label for="rsvp-plusone-name" id="rsvp-lbl-plusone-name">Plus-One Full Name</label>
+              <div class="input-container">
+                <i class="fa-solid fa-heart input-icon"></i>
+                <input type="text" id="rsvp-plusone-name" placeholder="Companion's Full Name">
+              </div>
+            </div>
+
+            <!-- Dietary Selection -->
+            <div class="form-group">
+              <label for="rsvp-dietary" id="rsvp-lbl-dietary">Gourmet Dinner Course Preference</label>
+              <div class="input-container">
+                <i class="fa-solid fa-utensils input-icon"></i>
+                <select id="rsvp-dietary">
+                  <option value="wagyu">Imperial Wagyu & Caviar Reduction</option>
+                  <option value="seabass">Pan-Seared Chilean Seabass & Saffron</option>
+                  <option value="truffle_veg">Truffle Wild Mushroom & Porcini Risotto (Vegetarian)</option>
+                  <option value="gluten_free">Gluten-Free Chef's Creation</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Signature Cocktail Preference -->
+            <div class="form-group">
+              <label for="rsvp-cocktail" id="rsvp-lbl-cocktail">Favorite Signature Libation</label>
+              <div class="input-container">
+                <i class="fa-solid fa-martini-glass-empty input-icon"></i>
+                <select id="rsvp-cocktail">
+                  <option value="vintage_champagne">Dom Pérignon Vintage Champagne</option>
+                  <option value="french75">French 75 (Gin, Champagne, Lemon)</option>
+                  <option value="espresso_martini">Smoked Velvet Espresso Martini</option>
+                  <option value="zero_proof">Zero-Proof Starlight Elderflower Spritz</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Song Request -->
+            <div class="form-group">
+              <label for="rsvp-song" id="rsvp-lbl-song">Song That Will Keep You on the Dance Floor</label>
+              <div class="input-container">
+                <i class="fa-solid fa-music input-icon"></i>
+                <input type="text" id="rsvp-song" placeholder="Artist - Track Title">
+              </div>
+            </div>
+
+            <!-- Special Note -->
+            <div class="form-group">
+              <label for="rsvp-message" id="rsvp-lbl-message">Personal Note or Birthday Toast</label>
+              <div class="input-container">
+                <i class="fa-solid fa-feather-pointed input-icon"></i>
+                <input type="text" id="rsvp-message" placeholder="A sparkling wish for Aurelia...">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="rsvp-submit-container text-center">
+            <button type="submit" class="btn-rsvp-submit">
+              <span class="submit-glow"></span>
+              <span class="submit-text" id="rsvp-submit-btn-text"><i class="fa-solid fa-sparkles"></i> Submit VIP RSVP & Generate Digital Pass</span>
+            </button>
+            <p class="rsvp-privacy-note" id="rsvp-privacy-note"><i class="fa-solid fa-lock"></i> Your information is strictly confidential for private guestlist verification.</p>
+          </div>
+        </form>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- 10. INTERACTIVE TOAST WALL & GUESTBOOK -->
+    <!-- ========================================================================= -->
+    <section class="section-container toasts-section" id="toasts">
+      <div class="section-header text-center">
+        <span class="section-sub-gold">RAISE A GLASS</span>
+        <h2 class="section-title">The Golden Toast Wall</h2>
+        <p class="section-lead">Leave your sparkling birthday wishes for Aurelia or click to clink champagne glasses!</p>
+      </div>
+
+      <!-- Champagne Clink Interactive Bar -->
+      <div class="clink-interactive-bar glass-card">
+        <div class="clink-info">
+          <i class="fa-solid fa-champagne-glasses clink-icon"></i>
+          <div>
+            <span class="clink-counter-title" id="clink-counter-title">Champagne Glasses Raised for Aurelia:</span>
+            <strong class="clink-count-val" id="clink-counter">248</strong>
+          </div>
+        </div>
+        <button id="cheers-btn" class="btn-cheers">
+          <i class="fa-solid fa-glass-cheers"></i>
+          <span id="cheers-btn-text">Raise a Toast! 🥂</span>
+        </button>
+      </div>
+
+      <!-- Live Toast Wall Grid -->
+      <div class="toasts-grid" id="toasts-wall-container">
+        <!-- Preloaded chic sample toasts -->
+        <div class="toast-item-card glass-card">
+          <div class="toast-card-top">
+            <span class="toast-author"><i class="fa-solid fa-circle-check gold-check"></i> Camille Duprès</span>
+            <span class="toast-time">Just now</span>
+          </div>
+          <p class="toast-text">“Happy 25th birthday, my queen! To a woman who redefines elegance, kindness, and beauty every single day. Can't wait to dance all night in Milan!” 🥂✨</p>
+          <div class="toast-signature">❤️ With endless love</div>
+        </div>
+
+        <div class="toast-item-card glass-card">
+          <div class="toast-card-top">
+            <span class="toast-author"><i class="fa-solid fa-circle-check gold-check"></i> Alexander & Sophie</span>
+            <span class="toast-time">1 hour ago</span>
+          </div>
+          <p class="toast-text">“May Chapter 25 be filled with grand adventures, timeless memories, and the finest champagne. You deserve the world, Aurelia!” 🍾💫</p>
+          <div class="toast-signature">🥂 See you on the red carpet!</div>
+        </div>
+
+        <div class="toast-item-card glass-card">
+          <div class="toast-card-top">
+            <span class="toast-author"><i class="fa-solid fa-circle-check gold-check"></i> Lord Julian Vance</span>
+            <span class="toast-time">3 hours ago</span>
+          </div>
+          <p class="toast-text">“Twenty-five years of pure brilliance. Proud of everything you've accomplished and the incredible grace you bring to every room.” 👑</p>
+          <div class="toast-signature">✨ Happy 25th!</div>
+        </div>
+      </div>
+
+      <!-- Quick Toast Form -->
+      <div class="quick-toast-box glass-card">
+        <h3 class="quick-toast-title" id="quick-toast-title"><i class="fa-solid fa-pen-fancy"></i> Leave a Sparkling Toast</h3>
+        <form id="quick-toast-form" class="quick-toast-form">
+          <div class="toast-inputs-row">
+            <input type="text" id="toast-author-input" required placeholder="Your Name" maxlength="40">
+            <input type="text" id="toast-message-input" required placeholder="Write your celebratory wish..." maxlength="280">
+            <button type="submit" class="btn-toast-send">
+              <span id="btn-toast-send-text">Post Toast</span>
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- 11. WISHLIST & PHILANTHROPY (TASTEFUL REGISTRY) -->
+    <!-- ========================================================================= -->
+    <section class="section-container registry-section" id="registry">
+      <div class="section-header text-center">
+        <span class="section-sub-gold">GIFTS & CONTRIBUTIONS</span>
+        <h2 class="section-title">The 25th Milestone Registry</h2>
+        <p class="section-lead">Your presence and warmth are the greatest gift. For those who have kindly enquired about gifts, here are thoughtfully curated avenues:</p>
+      </div>
+
+      <div class="registry-cards-grid">
+        <div class="registry-card glass-card">
+          <div class="reg-icon-box"><i class="fa-solid fa-plane-departure"></i></div>
+          <h3 class="reg-title">Amalfi & French Riviera Fund</h3>
+          <p class="reg-desc">Contributions towards creating unforgettable travel memories and milestone experiences across the Mediterranean.</p>
+        </div>
+
+        <div class="registry-card glass-card">
+          <div class="reg-icon-box"><i class="fa-solid fa-champagne-glasses"></i></div>
+          <h3 class="reg-title">Fine Vintage Wine Cellar</h3>
+          <p class="reg-desc">For wine and champagne connoisseurs wishing to gift a bottle of Grand Cru or vintage bubbly to age for future milestones.</p>
+        </div>
+
+        <div class="registry-card glass-card">
+          <div class="reg-icon-box"><i class="fa-solid fa-hand-holding-heart"></i></div>
+          <h3 class="reg-title">Ocean & Youth Arts Philanthropy</h3>
+          <p class="reg-desc">In honor of turning 25, a portion of gifts will be dedicated to ocean preservation and young artists foundation.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- 12. INSTAGRAM / SOCIAL MOMENT BANNER -->
+    <!-- ========================================================================= -->
+    <section class="social-moment-banner" id="social">
+      <div class="social-banner-content">
+        <span class="social-hashtag">#CHAPTER25AURELIA • #VANCE25GALA</span>
+        <h2 class="social-title">Capture The Starlight</h2>
+        <p>Tag your gala photos and stories with our official celebration tags to be featured on the live soirée gallery display.</p>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ========================================================================= -->
+  <!-- 13. GENERATED VIP TICKET MODAL (POPUP ON RSVP) -->
+  <!-- ========================================================================= -->
+  <div id="ticket-modal" class="ticket-modal-overlay">
+    <div class="ticket-modal-card">
+      <button id="close-ticket-btn" class="modal-close-btn" aria-label="Close Ticket Modal">&times;</button>
+      
+      <div class="ticket-celebration-header">
+        <span class="ticket-celebrate-badge">✦ VIP REGISTRATION CONFIRMED ✦</span>
+        <h2 class="ticket-congrats-title">You're On The VIP Guestlist!</h2>
+        <p class="ticket-congrats-sub">Download your digital boarding pass or save it directly to your device.</p>
+      </div>
+
+      <!-- Printable / Downloadable Golden VIP Card (Exact match with 3D Holographic Card) -->
+      <div class="printable-vip-card vip-invitation-card" id="printable-pass" style="width: 100%; max-width: 580px; margin: 0 auto; height: 350px; text-align: left; transform: none; box-shadow: 0 15px 45px rgba(0,0,0,0.8), 0 0 30px rgba(212,175,55,0.3);">
+        <div class="card-face card-front" style="position: relative; height: 100%; box-sizing: border-box;">
+          <div class="card-holographic-sheen"></div>
+          
+          <div class="card-top-row">
+            <div class="card-crest">
+              <span class="crest-monogram" id="ticket-monogram">AV</span>
+              <span class="crest-code" id="ticket-code-badge">VIP • ALL ACCESS</span>
+            </div>
+            <div class="card-tier-badge">
+              <i class="fa-solid fa-diamond"></i>
+              <span id="ticket-pass-type">ALL-ACCESS VIP</span>
+            </div>
+          </div>
+
+          <div class="card-center-details">
+            <span class="card-sub-presents" id="ticket-presents-str">CORDIALLY INVITES</span>
+            <h3 class="card-guest-name" id="ticket-guest-name">Lady Genevieve</h3>
+            <p class="card-occasion" id="ticket-event-title">EXCLUSIVE CELEBRATION GALA</p>
+            <h2 class="card-protagonist-name" id="ticket-protagonist-name">Aurelia Vance</h2>
+          </div>
+
+          <div class="card-bottom-row">
+            <div class="card-meta-col">
+              <span class="c-meta-lbl">DATE</span>
+              <strong class="c-meta-val" id="ticket-date-str">26.09.2026</strong>
+            </div>
+            <div class="card-meta-col">
+              <span class="c-meta-lbl">TIME</span>
+              <strong class="c-meta-val" id="ticket-time-str">19:00 CEST</strong>
+            </div>
+            <div class="card-meta-col">
+              <span class="c-meta-lbl">VENUE</span>
+              <strong class="c-meta-val" id="ticket-venue-str">Penthouse Villa</strong>
+            </div>
+            <div class="card-barcode-box">
+              <i class="fa-solid fa-qrcode card-qr-icon"></i>
+              <span class="barcode-num" id="ticket-code-str">AV-8849-VIP</span>
+            </div>
+          </div>
+
+          <!-- Foil Trim Border -->
+          <div class="card-foil-border"></div>
+        </div>
+      </div>
+
+      <div class="ticket-modal-actions" style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 24px;">
+        <button id="download-ticket-img-btn" class="btn-gold-shimmer" style="padding: 14px 28px; font-size: 0.88rem; cursor: pointer;">
+          <i class="fa-solid fa-download"></i>
+          <span>Save Pass (Image / Photo)</span>
+        </button>
+        <button id="dismiss-ticket-btn" class="btn-ticket-done" style="padding: 14px 24px;">
+          <span>Close</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- 14. FOOTER -->
+  <!-- ========================================================================= -->
+  <footer class="luxury-footer" id="main-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <span class="footer-monogram" id="footer-monogram-txt">AV</span>
+        <h3 class="footer-title" id="footer-title-txt">CHAPTER TWENTY-FIVE</h3>
+        <p class="footer-quote" id="footer-quote-txt">“To the golden hours behind us, and the brilliant years ahead.”</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#hero" id="footer-link-1">Back to Top</a>
+        <a href="#timeline" id="footer-link-2">Schedule</a>
+        <a href="#dress-code" id="footer-link-3">Dress Code</a>
+        <a href="#rsvp" id="footer-link-4">RSVP</a>
+      </div>
+
+      <div class="footer-bottom">
+        <p id="footer-copyright-txt">© 2026 Aurelia Vance 25th Birthday Celebration. All Rights Reserved.</p>
+        <p class="designed-with" id="footer-subtext-txt">Bespoke Haute Couture Invitation Experience</p>
+        <p style="margin-top: 10px;">
+          <a href="admin.html" style="color: rgba(255, 223, 115, 0.75); text-decoration: none; font-size: 0.72rem; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 6px; padding: 4px 14px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.3); background: rgba(0,0,0,0.5);">
+            <i class="fa-solid fa-crown"></i> <span>Organizer CMS Studio ⚙️</span>
+          </a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Storage Engine & Main Application Script (Standalone & CORS-free) -->
+  <script src="./src/cms-storage.js"></script>
+  <script src="./src/app.js"></script>
+</body>
+</html>
