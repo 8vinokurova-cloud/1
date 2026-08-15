@@ -2345,52 +2345,35 @@ function initAllFeatures() {
       const song = document.getElementById('rsvp-song')?.value.trim() || '';
       const message = document.getElementById('rsvp-message')?.value.trim() || '';
 
-      const existingGuests = cmsStorage ? cmsStorage.getGuests(currentEventSlug) : [];
-      let guestRecord = existingGuests.find(g => (g.email || '').toLowerCase() === email.toLowerCase());
-
       const monoPrefix = (currentConfig?.protagonistMonogram || 'VIP').toUpperCase().slice(0, 3);
       const generatedPassId = `${monoPrefix}-${Math.floor(1000 + Math.random() * 9000)}-VIP`;
 
-      if (guestRecord) {
-        // Update existing record
-        guestRecord.name = name;
-        guestRecord.attendance = attendance;
-        guestRecord.plusOneCount = plusOneCount;
-        guestRecord.plusOneName = plusOneName;
-        guestRecord.dietary = dietary;
-        guestRecord.cocktail = cocktail;
-        guestRecord.song = song;
-        guestRecord.message = message;
-        guestRecord.status = attendance === 'attending' ? 'attending' : 'declined';
-        localStorage.setItem(`cms_event_${currentEventSlug}_guests`, JSON.stringify(existingGuests));
-      } else {
-        // Create new guest
-        guestRecord = {
-          name,
-          email,
-          attendance,
-          plusOne: plusOneCount !== '0' ? `Yes (${plusOneName || 'Companion'})` : 'No',
-          plusOneCount,
-          plusOneName,
-          dietary,
-          cocktail,
-          song,
-          message,
-          status: attendance === 'attending' ? 'attending' : 'declined',
-          passId: generatedPassId,
-          doorCheckIn: false,
-          createdAt: new Date().toISOString()
-        };
-        if (cmsStorage) {
-          cmsStorage.addGuest(currentEventSlug, guestRecord);
-        }
+      const guestRecord = {
+        name,
+        email,
+        attendance,
+        plusOne: plusOneCount !== '0' ? `Yes (${plusOneName || 'Companion'})` : 'No',
+        plusOneCount,
+        plusOneName,
+        dietary,
+        cocktail,
+        song,
+        message,
+        status: attendance === 'attending' ? 'attending' : 'declined',
+        passId: generatedPassId,
+        doorCheckIn: false,
+        createdAt: new Date().toISOString()
+      };
+
+      if (cmsStorage) {
+        cmsStorage.addGuest(currentEventSlug, guestRecord);
       }
 
       currentRegisteredGuest = guestRecord;
 
       // Cross-device sync RSVP to server
+      const apiBase = (cmsStorage && typeof cmsStorage.getApiBaseUrl === 'function') ? cmsStorage.getApiBaseUrl() : '';
       try {
-        const apiBase = (cmsStorage && typeof cmsStorage.getApiBaseUrl === 'function') ? cmsStorage.getApiBaseUrl() : '';
         fetch(`${apiBase}/api/events/${encodeURIComponent(currentEventSlug)}/guests`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -2440,9 +2423,9 @@ function initAllFeatures() {
 
       if (guestRecord.message) addToastToWall(guestRecord.name, guestRecord.message);
 
-      // Dispatch Luxury VIP Email Confirmation in background
+      // Dispatch Luxury VIP Email Confirmation to cloud backend
       if (email && email.includes('@')) {
-        fetch('/api/dispatch-invite', {
+        fetch(`${apiBase}/api/dispatch-invite`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
