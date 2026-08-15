@@ -83,6 +83,12 @@ function hydrateEventContent() {
     document.title = `${currentConfig.eventName} | Exclusive VIP Invitation`;
   }
 
+  // 1b. Footer Organizer CMS Link (Preserves exact active site)
+  const footerAdminLink = document.getElementById('footer-admin-link');
+  if (footerAdminLink) {
+    footerAdminLink.href = currentEventSlug === 'master_default' ? 'admin.html' : `admin.html?event=${encodeURIComponent(currentEventSlug)}`;
+  }
+
   // 2. Monogram Initials
   const mono = currentConfig.protagonistMonogram || 'AV';
   document.querySelectorAll('.crest-monogram, .logo-monogram, .stub-monogram, .footer-monogram').forEach(el => {
