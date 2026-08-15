@@ -331,8 +331,8 @@ app.post('/api/events/:slug/guests', async (req, res) => {
   const slug = req.params.slug || 'master_default';
   const guestData = req.body;
 
-  if (!guestData.name || !guestData.email) {
-    return res.status(400).json({ success: false, message: 'Guest name and email are required.' });
+  if (!guestData.name) {
+    return res.status(400).json({ success: false, message: 'Guest name is required.' });
   }
 
   const allGuests = readJsonFile('guests.json', {});
@@ -384,11 +384,10 @@ app.get('/api/events/:slug/guests/export', (req, res) => {
   const allGuests = readJsonFile('guests.json', {});
   const list = allGuests[slug] || [];
 
-  const headers = ["Pass ID", "Guest Name", "Email", "Attendance", "Plus-Ones", "Companion Name", "Dinner Choice", "Cocktail Choice", "Song Request", "Personal Note", "Door Check-in", "Registered At"];
+  const headers = ["Pass ID", "Guest Name", "Attendance", "Plus-Ones", "Companion Name", "Dinner Choice", "Cocktail Choice", "Song Request", "Personal Note", "Door Check-in", "Registered At"];
   const rows = list.map(g => [
     `"${g.passId || ''}"`,
     `"${g.name || ''}"`,
-    `"${g.email || ''}"`,
     `"${g.attendance || ''}"`,
     `"${g.plusOneCount || '0'}"`,
     `"${g.plusOneName || ''}"`,
@@ -743,16 +742,17 @@ app.post('/api/dispatch-invite', async (req, res) => {
   `;
 
   // 1. Direct Resend API Dispatch (Zero-config 100% cloud email)
-  if (process.env.RESEND_API_KEY) {
+  const resendApiKey = process.env.RESEND_API_KEY;
+  if (resendApiKey) {
     try {
       const resendRes = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+          'Authorization': `Bearer ${resendApiKey}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          from: process.env.SMTP_FROM || `${celebrant} <onboarding@resend.dev>`,
+          from: process.env.SMTP_FROM || 'VIP Invitation <onboarding@resend.dev>',
           to: [email],
           subject: emailSubject,
           html: htmlContent
