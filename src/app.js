@@ -15,6 +15,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   hydrateEventContent();
   initAllFeatures();
   
+  // Authoritative cloud sync on initial load
+  try {
+    if (cmsStorage && typeof cmsStorage.syncWithServer === 'function') {
+      const cloudCfg = await cmsStorage.syncWithServer(currentEventSlug);
+      if (cloudCfg) hydrateEventContent();
+    }
+  } catch (eInitSync) {}
+  
   // Real-time live sync with Admin Studio & cross-client peers via BroadcastChannel
   try {
     if (typeof BroadcastChannel !== 'undefined') {
