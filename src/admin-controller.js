@@ -2212,6 +2212,8 @@ function collectAdminConfig(config) {
       setTxt('admin-preview-crest-monogram', mono);
       setTxt('nav-preview-mono', mono);
       setTxt('env-preview-monogram', mono);
+      setVal('cms-nav-brand-title', pName.toUpperCase());
+      config.navBrandTitle = pName.toUpperCase();
       setTxt('cms-nav-brand-title-disp', pName.toUpperCase());
       setTxt('cms-vippass-protagonist-disp', pName);
       setTxt('cms-hero-quote-author-disp', firstName);
