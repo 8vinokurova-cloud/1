@@ -617,7 +617,7 @@
     "envelopeLetterHeading": "Драгоценный Гость",
     "envelopeLetterBody": "С огромной радостью и теплом в сердце приглашаю вас разделить со мной этот особенный вечер. 30 лет — это время сиять, любить и праздновать жизнь в кругу самых дорогих людей!",
     "envelopeLetterSignature": "С бесконечной любовью, Нана",
-    "updatedAt": "2026-08-15T18:43:43.896Z",
+    "updatedAt": "2026-08-15T19:06:00.937Z",
     "aboutSectionSub": "AN INTIMATE MESSAGE",
     "vipPassSectionSub": "YOUR ALL-ACCESS PASS",
     "vipPassSectionTitle": "The Holographic VIP Invitation",
@@ -631,7 +631,8 @@
     "vipPassVenue": "Банкетный зал «Олимпия Резиденс»",
     "vipPassBarcode": "#НМ-30-EXCLUSIVE",
     "rsvpSectionSub": "EXCLUSIVE REGISTRATION",
-    "registrySectionSub": "GIFTS & CONTRIBUTIONS"
+    "registrySectionSub": "GIFTS & CONTRIBUTIONS",
+    "vipPassGuestPlaceholder": "например, Анна Смирнова / Дорогой Гость"
   },
   "--": {
     "slug": "--",
