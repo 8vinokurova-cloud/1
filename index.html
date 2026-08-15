@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="./src/style.css">
+  <link rel="stylesheet" href="./src/style.css?v=2.7.0">
 
   <!-- Immediate Inline Fallback Script -->
   <script>
@@ -697,22 +697,23 @@
         <form id="rsvp-form" class="rsvp-luxury-form">
           <div class="form-grid">
             
-            <!-- First Name -->
+            <!-- Full Name -->
             <div class="form-group">
-              <label for="rsvp-name" id="rsvp-lbl-name">First Name <span class="req">*</span></label>
+              <label for="rsvp-name" id="rsvp-lbl-name">Your Full Name <span class="req">*</span></label>
               <div class="input-container">
-                <i class="fa-solid fa-user input-icon"></i>
-                <input type="text" id="rsvp-name" required placeholder="e.g. Genevieve">
+                <i class="fa-solid fa-user-tie input-icon"></i>
+                <input type="text" id="rsvp-name" required placeholder="e.g. Lady Genevieve Sterling">
               </div>
             </div>
 
-            <!-- Last Name -->
+            <!-- Email Address with Real-Time Validation Feedback -->
             <div class="form-group">
-              <label for="rsvp-lastname" id="rsvp-lbl-lastname">Last Name <span class="req">*</span></label>
-              <div class="input-container">
-                <i class="fa-solid fa-user-tag input-icon"></i>
-                <input type="text" id="rsvp-lastname" required placeholder="e.g. Sterling">
+              <label for="rsvp-email" id="rsvp-lbl-email">Email for VIP Confirmation <span class="req">*</span></label>
+              <div class="input-container" id="rsvp-email-container">
+                <i class="fa-solid fa-envelope input-icon"></i>
+                <input type="email" id="rsvp-email" required placeholder="genevieve@luxury.com" autocomplete="email">
               </div>
+              <span id="rsvp-email-feedback" class="email-validation-hint" style="display: none; font-size: 0.72rem; margin-top: 5px; font-weight: 500;"></span>
             </div>
 
             <!-- Attendance Choice -->
@@ -1044,7 +1045,7 @@
   </footer>
 
   <!-- Storage Engine & Main Application Script (Standalone & CORS-free with Cache-Busting) -->
-  <script src="./src/cms-storage.js?v=2.6.0"></script>
-  <script src="./src/app.js?v=2.6.0"></script>
+  <script src="./src/cms-storage.js?v=2.7.0"></script>
+  <script src="./src/app.js?v=2.7.0"></script>
 </body>
 </html>
