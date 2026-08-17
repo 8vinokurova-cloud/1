@@ -331,9 +331,10 @@ app.post('/api/events/:slug/guests', async (req, res) => {
   const slug = req.params.slug || 'master_default';
   const guestData = req.body;
 
-  if (!guestData.name || !guestData.email) {
-    return res.status(400).json({ success: false, message: 'Guest name and email are required.' });
+  if (!guestData.name) {
+    return res.status(400).json({ success: false, message: 'Guest name is required.' });
   }
+  guestData.email = guestData.email || '';
 
   const allGuests = readJsonFile('guests.json', {});
   if (!allGuests[slug]) allGuests[slug] = [];
