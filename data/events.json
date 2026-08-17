@@ -132,7 +132,7 @@
     "rsvpCocktailOptions": [
       {
         "id": "c1",
-        "label": "Dom Pérignon Vintage Champagne"
+        "label": "Dom Perignon Vintage Champagne"
       },
       {
         "id": "c2",
@@ -189,7 +189,7 @@
     "diningCourse1": "Imperial Wagyu Beef Fillet & Truffle Jus",
     "diningCourse2": "Pan-Seared Chilean Seabass & Saffron",
     "diningCourse3": "Truffle Wild Mushroom & Porcini Risotto (Veg)",
-    "cocktail1": "Dom Pérignon Vintage Champagne",
+    "cocktail1": "Dom Perignon Vintage Champagne",
     "cocktail2": "French 75 (Gin, Champagne, Lemon)",
     "cocktail3": "Smoked Velvet Espresso Martini",
     "rsvpNameLabel": "Your First Name *",
