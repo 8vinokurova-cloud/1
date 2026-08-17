@@ -2302,7 +2302,7 @@ function initAllFeatures() {
       const plusOneCount = plusOneSelect ? plusOneSelect.value : '0';
       const plusOneName = document.getElementById('rsvp-plusone-name')?.value.trim() || '';
       const dietary = document.getElementById('rsvp-dietary')?.value || 'Chef Selection';
-      const cocktail = document.getElementById('rsvp-cocktail')?.value || 'Dom Pérignon';
+      const cocktail = document.getElementById('rsvp-cocktail')?.value || 'Dom Perignon Vintage';
       const song = document.getElementById('rsvp-song')?.value.trim() || '';
       const message = document.getElementById('rsvp-message')?.value.trim() || '';
 
@@ -2313,7 +2313,7 @@ function initAllFeatures() {
         name: fullName,
         firstName,
         lastName,
-        email: `${firstName.toLowerCase().replace(/[^a-z0-9]/g, '') || 'guest'}@celebration.vip`,
+        email: '',
         attendance,
         plusOne: plusOneCount !== '0' ? `Yes (${plusOneName || 'Companion'})` : 'No',
         plusOneCount,
@@ -2385,25 +2385,6 @@ function initAllFeatures() {
       if (ticketVenueStr) ticketVenueStr.textContent = venueDisplay;
 
       if (guestRecord.message) addToastToWall(guestRecord.name, guestRecord.message);
-
-      // Dispatch Luxury VIP Email Confirmation to cloud backend
-      if (email && email.includes('@')) {
-        fetch(`${apiBase}/api/dispatch-invite`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: guestRecord.name,
-            email: guestRecord.email,
-            eventSlug: currentEventSlug,
-            eventTitle: currentConfig?.milestoneTitle || currentConfig?.eventName || 'THE GOLDEN SOIRÉE',
-            eventDate: currentConfig?.eventDateText || currentConfig?.vipPassDate,
-            venueName: venueDisplay,
-            plusOne: guestRecord.plusOneCount === '1'
-          })
-        }).then(r => r.json()).then(data => {
-          console.log('✉️ Email invite dispatch response:', data);
-        }).catch(err => console.warn('Email dispatch background:', err));
-      }
 
       luxuryAudio.playChampagneClink();
       spawnBurstParticles(window.innerWidth / 2, window.innerHeight / 2);
