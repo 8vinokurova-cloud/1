@@ -72,12 +72,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   window.addEventListener('pageshow', syncLatestOnFocus);
   window.addEventListener('focus', syncLatestOnFocus);
 
-  // Periodic lightweight live cloud poller for mobile browser sandboxes
-  setInterval(() => {
-    if (document.visibilityState === 'visible') {
-      syncLatestOnFocus();
-    }
-  }, 4000);
+  // Instant sync via BroadcastChannel and focus triggers (Zero CPU/Network load)
 });
 
 /* ==========================================================================
