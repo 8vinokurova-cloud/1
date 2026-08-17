@@ -2129,17 +2129,29 @@ function bindAdminEvents() {
     if (input.id && !input.id.startsWith('reg-') && !input.id.startsWith('login-') && !excludedInputIds.includes(input.id)) {
       input.addEventListener('input', () => {
         if (isSwitchingEvents) return;
+        const badgeText = document.getElementById('autosave-text');
+        const badgeIcon = document.getElementById('autosave-icon');
+        if (badgeText) badgeText.textContent = 'Saving...';
+        if (badgeIcon) {
+          badgeIcon.className = 'fa-solid fa-arrows-rotate fa-spin';
+          badgeIcon.style.color = '#FFDF73';
+        }
         clearTimeout(autoSaveTimer);
         autoSaveTimer = setTimeout(() => {
           if (!isSwitchingEvents) {
-            window.saveCurrentConfigQuietly();
+            window.saveCurrentConfigQuietly(false);
+            if (badgeText) badgeText.textContent = 'Auto-Saved';
+            if (badgeIcon) {
+              badgeIcon.className = 'fa-solid fa-cloud-arrow-up';
+              badgeIcon.style.color = '#55EFC4';
+            }
           }
-        }, 400);
+        }, 150);
       });
       input.addEventListener('change', () => {
         if (isSwitchingEvents) return;
         clearTimeout(autoSaveTimer);
-        window.saveCurrentConfigQuietly();
+        window.saveCurrentConfigQuietly(true);
       });
     }
   });
@@ -2522,16 +2534,16 @@ window.triggerLiveAutoSave = function() {
 
   clearTimeout(liveAutoSaveTimeout);
   liveAutoSaveTimeout = setTimeout(() => {
-    window.saveCurrentConfigQuietly();
+    window.saveCurrentConfigQuietly(false);
     if (badgeText) badgeText.textContent = 'Auto-Saved';
     if (badgeIcon) {
       badgeIcon.className = 'fa-solid fa-cloud-arrow-up';
       badgeIcon.style.color = '#55EFC4';
     }
-  }, 220);
+  }, 150);
 };
 
-window.saveCurrentConfigQuietly = function() {
+window.saveCurrentConfigQuietly = function(immediateServer = false) {
   if (isSwitchingEvents) return;
   if (!activeEventSlug) return;
 
@@ -2545,7 +2557,7 @@ window.saveCurrentConfigQuietly = function() {
   config.slug = targetSlug;
   collectAdminConfig(config);
 
-  cmsStorage.saveEventConfig(targetSlug, config);
+  cmsStorage.saveEventConfig(targetSlug, config, immediateServer);
   activeConfig = config;
   localStorage.setItem('cms_last_active_slug', targetSlug);
 
