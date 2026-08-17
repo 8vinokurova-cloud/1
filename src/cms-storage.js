@@ -567,7 +567,7 @@ class CMSStorageEngine {
     }
   }
 
-  saveEventConfig(slug, config) {
+  saveEventConfig(slug, config, immediateServer = false) {
     if (!slug || slug === 'default' || slug === 'master') slug = 'master_default';
     config.slug = slug;
     config.updatedAt = Date.now();
@@ -604,10 +604,32 @@ class CMSStorageEngine {
         console.error('Failed to save lightweight config:', e2);
       }
     }
-    try {
-      this.saveToServer(slug, config);
-    } catch (eServer) {}
     localStorage.setItem('cms_last_active_slug', slug);
+
+    // Debounced, non-blocking cloud synchronization
+    if (immediateServer) {
+      this.flushServerSave(slug, config);
+    } else {
+      this.scheduleServerSave(slug, config);
+    }
+  }
+
+  scheduleServerSave(slug, config) {
+    if (!this._serverSaveTimers) this._serverSaveTimers = {};
+    if (this._serverSaveTimers[slug]) {
+      clearTimeout(this._serverSaveTimers[slug]);
+    }
+    this._serverSaveTimers[slug] = setTimeout(() => {
+      this.flushServerSave(slug, config);
+    }, 1200);
+  }
+
+  async flushServerSave(slug, config) {
+    if (this._serverSaveTimers && this._serverSaveTimers[slug]) {
+      clearTimeout(this._serverSaveTimers[slug]);
+      delete this._serverSaveTimers[slug];
+    }
+    return this.saveToServer(slug, config);
   }
 
   getApiBaseUrl() {
@@ -707,20 +729,32 @@ class CMSStorageEngine {
     if (!slug || slug === 'default') slug = 'master_default';
     const url = `${this.getApiBaseUrl()}/api/events/${encodeURIComponent(slug)}`;
     const jsonBody = JSON.stringify(config);
+
+    if (!this._abortControllers) this._abortControllers = {};
+    if (this._abortControllers[slug]) {
+      try { this._abortControllers[slug].abort(); } catch (eAbort) {}
+    }
+    const controller = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+    this._abortControllers[slug] = controller;
+
     try {
-      await fetch(url, {
+      const fetchOpts = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: jsonBody,
-        keepalive: true
-      });
+        body: jsonBody
+      };
+      if (controller) fetchOpts.signal = controller.signal;
+      const res = await fetch(url, fetchOpts);
+      return res.ok;
     } catch (err) {
-      if (navigator.sendBeacon) {
+      if (err && err.name === 'AbortError') return true;
+      if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
         try {
           const blob = new Blob([jsonBody], { type: 'application/json' });
           navigator.sendBeacon(url, blob);
         } catch (eBeacon) {}
       }
+      return false;
     }
   }
 
@@ -937,10 +971,11 @@ class CMSStorageEngine {
       return;
     }
 
-    const headers = ["Pass ID", "Guest Name", "Attendance", "Plus-Ones", "Companion Name", "Dinner Choice", "Cocktail Choice", "Song Request", "Personal Note", "Door Check-in", "Registered At"];
+    const headers = ["Pass ID", "Guest Name", "Email", "Attendance", "Plus-Ones", "Companion Name", "Dinner Choice", "Cocktail Choice", "Song Request", "Personal Note", "Door Check-in", "Registered At"];
     const rows = list.map(g => [
       `"${g.passId || ''}"`,
       `"${g.name || ''}"`,
+      `"${g.email || ''}"`,
       `"${g.attendance || ''}"`,
       `"${g.plusOneCount || '0'}"`,
       `"${g.plusOneName || ''}"`,
@@ -949,7 +984,7 @@ class CMSStorageEngine {
       `"${(g.song || '').replace(/"/g, '""')}"`,
       `"${(g.message || '').replace(/"/g, '""')}"`,
       `"${g.checkedIn ? 'CHECKED IN' : 'PENDING'}"`,
-      `"${g.createdAt || g.timestamp || ''}"`
+      `"${g.timestamp || ''}"`
     ]);
 
     const csvContent = "\uFEFF" + [headers.join(","), ...rows.map(r => r.join(","))].join("\r\n");
