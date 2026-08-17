@@ -1844,9 +1844,11 @@ function renderGuestTable() {
     const statusLabel = g.attendance === 'attending' ? 'Confirmed' : (g.attendance === 'invited' ? 'Invited ✉️' : 'Declined');
     const statusClass = g.attendance === 'attending' ? 'attending' : (g.attendance === 'invited' ? 'invited' : 'declined');
 
+    const emailDisp = (g.email && !g.email.endsWith('@celebration.vip')) ? `<br><small style="color: #888;">${escapeHtml(g.email)}</small>` : '';
+
     tr.innerHTML = `
       <td><strong style="color: #FFDF73; font-family: monospace;">${g.passId || 'VIP'}</strong></td>
-      <td><strong>${escapeHtml(g.name || 'Guest')}</strong><br><small style="color: #888;">${g.email || ''}</small></td>
+      <td><strong>${escapeHtml(g.name || 'Guest')}</strong>${emailDisp}</td>
       <td><span class="badge-status ${statusClass}">${statusLabel}</span></td>
       <td>${g.plusOneName ? `${escapeHtml(g.plusOneName)}` : 'Solo'}</td>
       <td>${escapeHtml(g.dietary || 'Standard')}</td>
